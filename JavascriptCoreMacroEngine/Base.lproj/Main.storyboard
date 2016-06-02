@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--MainView-->
@@ -13,40 +14,145 @@
                         <viewControllerLayoutGuide type="top" id="ZOU-qS-90v"/>
                         <viewControllerLayoutGuide type="bottom" id="Orq-nT-GhG"/>
                     </layoutGuides>
-                    <stackView key="view" opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" id="a0D-yi-2TC">
+                    <view key="view" contentMode="scaleToFill" id="E64-9j-q3a">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3q0-qD-dSD" userLabel="Activity View" customClass="CustomProgressView" customModule="JavascriptCoreMacroEngine" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="numberRotations">
-                                        <real key="value" value="7"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="progress">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
-                                        <color key="value" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
-                                        <real key="value" value="40"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="rotationDuration">
-                                        <real key="value" value="2"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nVD-kv-rRJ" userLabel="Control View">
-                                <rect key="frame" x="0.0" y="300" width="600" height="300"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="sHc-Xv-nEh">
+                                <rect key="frame" x="20" y="20" width="568" height="572"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dyu-uG-AQA" userLabel="Activity View">
+                                        <rect key="frame" x="0.0" y="0.0" width="568" height="282"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CH4-a4-q7e" userLabel="Outer Ring" customClass="CustomProgressView" customModule="JavascriptCoreMacroEngine" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="568" height="282"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="numberRotations">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="progress">
+                                                        <real key="value" value="0.5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                        <color key="value" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
+                                                        <real key="value" value="40"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                        <size key="value" width="10" height="0.0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                        <real key="value" value="0.59999999999999998"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="rotationDuration">
+                                                        <real key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mw3-KP-4Sf" userLabel="Middle Ring" customClass="CustomProgressView" customModule="JavascriptCoreMacroEngine" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="568" height="282"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="numberRotations">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="progress">
+                                                        <real key="value" value="0.5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                        <color key="value" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
+                                                        <real key="value" value="40"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                        <size key="value" width="10" height="0.0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                        <real key="value" value="0.59999999999999998"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="rotationDuration">
+                                                        <real key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="ringInset">
+                                                        <real key="value" value="45"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HKH-8X-WW9" userLabel="Inner Ring" customClass="CustomProgressView" customModule="JavascriptCoreMacroEngine" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="568" height="282"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="numberRotations">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="progress">
+                                                        <real key="value" value="0.5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                        <color key="value" red="0.40000000600000002" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
+                                                        <real key="value" value="40"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                        <size key="value" width="10" height="0.0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                        <real key="value" value="0.59999999999999998"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="rotationDuration">
+                                                        <real key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="ringInset">
+                                                        <real key="value" value="90"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="Mw3-KP-4Sf" secondAttribute="trailing" id="8me-tD-FQG"/>
+                                            <constraint firstAttribute="bottom" secondItem="CH4-a4-q7e" secondAttribute="bottom" id="9ZH-Dv-al5"/>
+                                            <constraint firstItem="CH4-a4-q7e" firstAttribute="leading" secondItem="Dyu-uG-AQA" secondAttribute="leading" id="AsA-Db-ALM"/>
+                                            <constraint firstItem="CH4-a4-q7e" firstAttribute="top" secondItem="Dyu-uG-AQA" secondAttribute="top" id="E0C-rW-f8Z"/>
+                                            <constraint firstItem="Mw3-KP-4Sf" firstAttribute="leading" secondItem="Dyu-uG-AQA" secondAttribute="leading" id="G0G-Jf-Urj"/>
+                                            <constraint firstAttribute="bottom" secondItem="Mw3-KP-4Sf" secondAttribute="bottom" id="Gxn-te-a4S"/>
+                                            <constraint firstAttribute="bottom" secondItem="HKH-8X-WW9" secondAttribute="bottom" id="Psc-ek-OEH"/>
+                                            <constraint firstAttribute="trailing" secondItem="CH4-a4-q7e" secondAttribute="trailing" id="Zqf-Jq-bj2"/>
+                                            <constraint firstItem="HKH-8X-WW9" firstAttribute="top" secondItem="Dyu-uG-AQA" secondAttribute="top" id="br1-AV-XnN"/>
+                                            <constraint firstAttribute="trailing" secondItem="HKH-8X-WW9" secondAttribute="trailing" id="gTx-R2-qut"/>
+                                            <constraint firstItem="Mw3-KP-4Sf" firstAttribute="top" secondItem="Dyu-uG-AQA" secondAttribute="top" id="sDA-E8-gHd"/>
+                                            <constraint firstItem="HKH-8X-WW9" firstAttribute="leading" secondItem="Dyu-uG-AQA" secondAttribute="leading" id="tpp-sF-fjc"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="usx-ow-ZWt" userLabel="Control View">
+                                        <rect key="frame" x="0.0" y="290" width="568" height="282"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                            </stackView>
                         </subviews>
-                    </stackView>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="sHc-Xv-nEh" firstAttribute="leading" secondItem="E64-9j-q3a" secondAttribute="leadingMargin" id="asy-Ao-wtu"/>
+                            <constraint firstItem="Orq-nT-GhG" firstAttribute="top" secondItem="sHc-Xv-nEh" secondAttribute="bottom" constant="8" id="dzd-cX-9s1"/>
+                            <constraint firstItem="sHc-Xv-nEh" firstAttribute="top" secondItem="ZOU-qS-90v" secondAttribute="bottom" id="iBX-tC-gQR"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="sHc-Xv-nEh" secondAttribute="trailing" constant="-8" id="iFQ-e9-v7P"/>
+                        </constraints>
+                    </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="325" y="387"/>
         </scene>
     </scenes>
 </document>
