@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D4BC5541D00CEEF00E5A42C /* CustomProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4BC5531D00CEEF00E5A42C /* CustomProgressView.swift */; };
 		7DAB44DE1D00BF46004DA41E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAB44DD1D00BF46004DA41E /* AppDelegate.swift */; };
 		7DAB44E01D00BF46004DA41E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAB44DF1D00BF46004DA41E /* ViewController.swift */; };
 		7DAB44E31D00BF46004DA41E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DAB44E11D00BF46004DA41E /* Main.storyboard */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7D4BC5531D00CEEF00E5A42C /* CustomProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomProgressView.swift; sourceTree = "<group>"; };
 		7DAB44DA1D00BF46004DA41E /* JavascriptCoreMacroEngine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JavascriptCoreMacroEngine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DAB44DD1D00BF46004DA41E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7DAB44DF1D00BF46004DA41E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -54,6 +56,7 @@
 		7DAB44DC1D00BF46004DA41E /* JavascriptCoreMacroEngine */ = {
 			isa = PBXGroup;
 			children = (
+				7D4BC5531D00CEEF00E5A42C /* CustomProgressView.swift */,
 				7DAB44DD1D00BF46004DA41E /* AppDelegate.swift */,
 				7DAB44DF1D00BF46004DA41E /* ViewController.swift */,
 				7DAB44E11D00BF46004DA41E /* Main.storyboard */,
@@ -137,6 +140,7 @@
 			files = (
 				7DAB44E01D00BF46004DA41E /* ViewController.swift in Sources */,
 				7DAB44DE1D00BF46004DA41E /* AppDelegate.swift in Sources */,
+				7D4BC5541D00CEEF00E5A42C /* CustomProgressView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,6 +294,7 @@
 				7DAB44EE1D00BF46004DA41E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
