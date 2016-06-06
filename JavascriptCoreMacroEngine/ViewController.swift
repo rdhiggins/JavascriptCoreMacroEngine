@@ -10,6 +10,10 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var innerRingView: CustomProgressView!
+    @IBOutlet weak var middleRingView: CustomProgressView!
+    @IBOutlet weak var outerRingView: CustomProgressView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.

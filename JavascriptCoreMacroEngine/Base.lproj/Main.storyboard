@@ -149,6 +149,11 @@
                             <constraint firstAttribute="trailingMargin" secondItem="sHc-Xv-nEh" secondAttribute="trailing" constant="-8" id="iFQ-e9-v7P"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="innerRingView" destination="HKH-8X-WW9" id="f3N-9O-ngn"/>
+                        <outlet property="middleRingView" destination="Mw3-KP-4Sf" id="YuR-Jx-opU"/>
+                        <outlet property="outerRingView" destination="CH4-a4-q7e" id="y2Y-E8-mYn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
