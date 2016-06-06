@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D2F2E841D05F9C900E837B8 /* Thing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2F2E831D05F9C900E837B8 /* Thing.swift */; };
 		7D4BC5541D00CEEF00E5A42C /* CustomProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4BC5531D00CEEF00E5A42C /* CustomProgressView.swift */; };
+		7D8FC3011D06208C00E0D4DC /* MacroEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8FC3001D06208C00E0D4DC /* MacroEngine.swift */; };
 		7DAB44DE1D00BF46004DA41E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAB44DD1D00BF46004DA41E /* AppDelegate.swift */; };
 		7DAB44E01D00BF46004DA41E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAB44DF1D00BF46004DA41E /* ViewController.swift */; };
 		7DAB44E31D00BF46004DA41E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DAB44E11D00BF46004DA41E /* Main.storyboard */; };
@@ -16,7 +18,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7D2F2E831D05F9C900E837B8 /* Thing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Thing.swift; sourceTree = "<group>"; };
 		7D4BC5531D00CEEF00E5A42C /* CustomProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomProgressView.swift; sourceTree = "<group>"; };
+		7D8FC3001D06208C00E0D4DC /* MacroEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MacroEngine.swift; sourceTree = "<group>"; };
 		7DAB44DA1D00BF46004DA41E /* JavascriptCoreMacroEngine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JavascriptCoreMacroEngine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DAB44DD1D00BF46004DA41E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7DAB44DF1D00BF46004DA41E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +67,8 @@
 				7DAB44E41D00BF46004DA41E /* Assets.xcassets */,
 				7DAB44E61D00BF46004DA41E /* LaunchScreen.storyboard */,
 				7DAB44E91D00BF46004DA41E /* Info.plist */,
+				7D2F2E831D05F9C900E837B8 /* Thing.swift */,
+				7D8FC3001D06208C00E0D4DC /* MacroEngine.swift */,
 			);
 			path = JavascriptCoreMacroEngine;
 			sourceTree = "<group>";
@@ -138,6 +144,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D8FC3011D06208C00E0D4DC /* MacroEngine.swift in Sources */,
+				7D2F2E841D05F9C900E837B8 /* Thing.swift in Sources */,
 				7DAB44E01D00BF46004DA41E /* ViewController.swift in Sources */,
 				7DAB44DE1D00BF46004DA41E /* AppDelegate.swift in Sources */,
 				7D4BC5541D00CEEF00E5A42C /* CustomProgressView.swift in Sources */,

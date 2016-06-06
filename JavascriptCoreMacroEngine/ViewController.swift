@@ -23,6 +23,7 @@
 // SOFTWARE.
 
 import UIKit
+import JavaScriptCore
 
 class ViewController: UIViewController {
 
@@ -33,6 +34,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        let thing = Thing.sharedInstance
+        innerRingView.progress = CGFloat(thing.innerProgress)
+        middleRingView.progress = CGFloat(thing.middleProgress)
+        outerRingView.progress = CGFloat(thing.outerProgress)
+        
+        testScript()
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,5 +49,16 @@ class ViewController: UIViewController {
     }
 
 
+    func testScript() {
+        let engine = MacroEngine.sharedInstance
+        engine.context.evaluateScript("setInnerProgress(getInnerProgress() + 1.0)")
+        engine.context.evaluateScript("setInnerProgress(getInnerProgress() + 1.0)")
+        
+        engine.context.evaluateScript("setMiddleProgress(getMiddleProgress() + 1.0)")
+        engine.context.evaluateScript("setMiddleProgress(getMiddleProgress() + 1.0)")
+        
+        engine.context.evaluateScript("setOuterProgress(getOuterProgress() + 1.0)")
+        engine.context.evaluateScript("setOuterProgress(getOuterProgress() + 1.0)")
+    }
 }
 
