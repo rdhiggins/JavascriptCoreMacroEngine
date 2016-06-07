@@ -25,51 +25,6 @@
 import UIKit
 import JavaScriptCore
 
-let jsEvenLess: String =
-"var evenLess = function() {" +
-"   var currentInner = getInnerProgress();" +
-"   var currentMiddle = getMiddleProgress();" +
-"   var currentOuter = getOuterProgress();" +
-"" +
-"   setInnerProgress(currentInner - Math.random());" +
-"   setMiddleProgress(currentMiddle - Math.random());" +
-"   setOuterProgress(currentOuter - Math.random());" +
-"}"
-
-let jsLess: String =
-"var lessFunction = function() {" +
-"   var currentInner = getInnerProgress();" +
-"   var currentMiddle = getMiddleProgress();" +
-"   var currentOuter = getOuterProgress();" +
-"" +
-"   setInnerProgress(currentInner - Math.random() / 10.0);" +
-"   setMiddleProgress(currentMiddle - Math.random() / 10.0);" +
-"   setOuterProgress(currentOuter - Math.random() / 10.0);" +
-"}"
-
-let jsEvenMore: String =
-"var evenMore = function() {" +
-"   var currentInner = getInnerProgress();" +
-"   var currentMiddle = getMiddleProgress();" +
-"   var currentOuter = getOuterProgress();" +
-"" +
-"   setInnerProgress(currentInner + Math.random());" +
-"   setMiddleProgress(currentMiddle + Math.random());" +
-"   setOuterProgress(currentOuter + Math.random());" +
-"}"
-
-let jsMore: String =
-"var moreFunction = function() {" +
-"   var currentInner = getInnerProgress();" +
-"   var currentMiddle = getMiddleProgress();" +
-"   var currentOuter = getOuterProgress();" +
-"" +
-"   setInnerProgress(currentInner + Math.random() / 10.0);" +
-"   setMiddleProgress(currentMiddle + Math.random() / 10.0);" +
-"   setOuterProgress(currentOuter + Math.random() / 10.0);" +
-"}"
-
-
 
 class ViewController: UIViewController, ProgressUpdate {
 
@@ -103,31 +58,29 @@ class ViewController: UIViewController, ProgressUpdate {
 
 
     @IBAction func evenLessButton(sender: UIButton) {
-        evenLess?.call(nil)
+        evenLess?.call()
     }
 
 
     @IBAction func lessButton(sender: UIButton) {
-        lessFunction?.call(nil)
+        lessFunction?.call()
     }
 
 
     @IBAction func moreButton(sender: UIButton) {
-        moreFunction?.call(nil)
+        moreFunction?.call()
     }
 
 
     @IBAction func evenMoreButton(sender: UIButton) {
-        evenMore?.call(nil)
+        evenMore?.call()
     }
 
-
-
     func registerJavascriptMethods() {
-        evenLess = MacroMethod(javascript: jsEvenLess, key: "evenLess")
-        lessFunction = MacroMethod(javascript: jsLess, key: "lessFunction")
-        evenMore = MacroMethod(javascript: jsEvenMore, key: "evenMore")
-        moreFunction = MacroMethod(javascript: jsMore, key: "moreFunction")
+        evenLess = loadJavascriptFile("evenLess")
+        lessFunction = loadJavascriptFile("less")
+        evenMore = loadJavascriptFile("evenMore")
+        moreFunction = loadJavascriptFile("more")
     }
 
     func innerProgressUpdate(progress: Float) {
@@ -140,6 +93,17 @@ class ViewController: UIViewController, ProgressUpdate {
 
     func outerProgressUpdate(progress: Float) {
         outerRingView.progress = CGFloat(progress)
+    }
+    
+    private func loadJavascriptFile(key: String) -> MacroMethod {
+        guard let filePath = NSBundle.mainBundle().pathForResource(key, ofType: "js") else {
+            print("Unable to load javascript file \(key).js")
+            fatalError()
+        }
+        
+        let script = try! String(contentsOfFile: filePath, encoding: NSUTF8StringEncoding)
+        
+        return MacroMethod(javascript: script, key: key)
     }
 }
 
