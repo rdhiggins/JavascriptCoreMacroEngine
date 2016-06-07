@@ -171,12 +171,60 @@
                                                     </button>
                                                 </subviews>
                                             </stackView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BHW-ni-OKs" userLabel="CodeView" customClass="CodeView" customModule="JavascriptCoreMacroEngine" customModuleProvider="target">
+                                                <rect key="frame" x="8" y="46" width="552" height="190"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="text">
+                                                        <string key="value">function() {
+    var currentInner = getInnerProgress();
+    var currentMiddle = getMiddleProgress();
+    var currentOuter = getOuterProgress();
+
+    setInnerProgress(currentInner + Math.random() / 10.0);
+    setMiddleProgress(currentMiddle + Math.random() / 10.0);
+    setOuterProgress(currentOuter + Math.random() / 10.0);
+}
+</string>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="gutterBackgroundColor">
+                                                        <color key="value" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="gutterTextColor">
+                                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="gutterBorderColor">
+                                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="gutterWidth">
+                                                        <real key="value" value="40"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="gutterBorderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iY1-bT-jtB">
+                                                <rect key="frame" x="269" y="244" width="30" height="30"/>
+                                                <state key="normal" title="Edit"/>
+                                                <connections>
+                                                    <action selector="editButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Zin-ur-nOk"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstItem="iY1-bT-jtB" firstAttribute="top" secondItem="BHW-ni-OKs" secondAttribute="bottom" constant="8" id="Bc3-DG-SpO"/>
+                                            <constraint firstItem="BHW-ni-OKs" firstAttribute="leading" secondItem="usx-ow-ZWt" secondAttribute="leading" constant="8" id="Bkj-ze-q1M"/>
                                             <constraint firstItem="fy5-3q-e2a" firstAttribute="leading" secondItem="usx-ow-ZWt" secondAttribute="leading" constant="8" id="D9g-P0-qJH"/>
+                                            <constraint firstItem="iY1-bT-jtB" firstAttribute="centerX" secondItem="usx-ow-ZWt" secondAttribute="centerX" id="FjS-Oy-LUw"/>
+                                            <constraint firstItem="BHW-ni-OKs" firstAttribute="top" secondItem="fy5-3q-e2a" secondAttribute="bottom" constant="8" id="U5U-T3-hdi"/>
+                                            <constraint firstAttribute="trailing" secondItem="BHW-ni-OKs" secondAttribute="trailing" constant="8" id="W0W-mI-FXx"/>
                                             <constraint firstItem="fy5-3q-e2a" firstAttribute="top" secondItem="usx-ow-ZWt" secondAttribute="top" constant="8" id="iSU-nf-uZa"/>
                                             <constraint firstAttribute="trailing" secondItem="fy5-3q-e2a" secondAttribute="trailing" constant="8" id="p3V-5y-aEW"/>
+                                            <constraint firstAttribute="bottom" secondItem="iY1-bT-jtB" secondAttribute="bottom" constant="8" id="ss5-15-cZk"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -191,6 +239,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="codeView" destination="BHW-ni-OKs" id="zcI-jc-FZo"/>
                         <outlet property="innerRingView" destination="HKH-8X-WW9" id="f3N-9O-ngn"/>
                         <outlet property="middleRingView" destination="Mw3-KP-4Sf" id="YuR-Jx-opU"/>
                         <outlet property="outerRingView" destination="CH4-a4-q7e" id="y2Y-E8-mYn"/>
