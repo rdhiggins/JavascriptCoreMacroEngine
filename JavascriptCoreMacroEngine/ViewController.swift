@@ -25,12 +25,63 @@
 import UIKit
 import JavaScriptCore
 
-class ViewController: UIViewController {
+let jsEvenLess: String =
+"var evenLess = function() {" +
+"   var currentInner = getInnerProgress();" +
+"   var currentMiddle = getMiddleProgress();" +
+"   var currentOuter = getOuterProgress();" +
+"" +
+"   setInnerProgress(currentInner - Math.random());" +
+"   setMiddleProgress(currentMiddle - Math.random());" +
+"   setOuterProgress(currentOuter - Math.random());" +
+"}"
+
+let jsLess: String =
+"var lessFunction = function() {" +
+"   var currentInner = getInnerProgress();" +
+"   var currentMiddle = getMiddleProgress();" +
+"   var currentOuter = getOuterProgress();" +
+"" +
+"   setInnerProgress(currentInner - Math.random() / 10.0);" +
+"   setMiddleProgress(currentMiddle - Math.random() / 10.0);" +
+"   setOuterProgress(currentOuter - Math.random() / 10.0);" +
+"}"
+
+let jsEvenMore: String =
+"var evenMore = function() {" +
+"   var currentInner = getInnerProgress();" +
+"   var currentMiddle = getMiddleProgress();" +
+"   var currentOuter = getOuterProgress();" +
+"" +
+"   setInnerProgress(currentInner + Math.random());" +
+"   setMiddleProgress(currentMiddle + Math.random());" +
+"   setOuterProgress(currentOuter + Math.random());" +
+"}"
+
+let jsMore: String =
+"var moreFunction = function() {" +
+"   var currentInner = getInnerProgress();" +
+"   var currentMiddle = getMiddleProgress();" +
+"   var currentOuter = getOuterProgress();" +
+"" +
+"   setInnerProgress(currentInner + Math.random() / 10.0);" +
+"   setMiddleProgress(currentMiddle + Math.random() / 10.0);" +
+"   setOuterProgress(currentOuter + Math.random() / 10.0);" +
+"}"
+
+
+
+class ViewController: UIViewController, ProgressUpdate {
 
     @IBOutlet weak var innerRingView: CustomProgressView!
     @IBOutlet weak var middleRingView: CustomProgressView!
     @IBOutlet weak var outerRingView: CustomProgressView!
-    
+
+    private var evenMore: JSValue!
+    private var moreFunction: JSValue!
+    private var evenLess: JSValue!
+    private var lessFunction: JSValue!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -39,8 +90,10 @@ class ViewController: UIViewController {
         innerRingView.progress = CGFloat(thing.innerProgress)
         middleRingView.progress = CGFloat(thing.middleProgress)
         outerRingView.progress = CGFloat(thing.outerProgress)
-        
-        testScript()
+
+        thing.delegate = self
+
+        registerJavascriptMethods()
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,16 +102,51 @@ class ViewController: UIViewController {
     }
 
 
-    func testScript() {
+    @IBAction func evenLessButton(sender: UIButton) {
+        evenLess.callWithArguments(nil)
+    }
+
+
+    @IBAction func lessButton(sender: UIButton) {
+        lessFunction.callWithArguments(nil)
+    }
+
+
+    @IBAction func moreButton(sender: UIButton) {
+        moreFunction.callWithArguments(nil)
+    }
+
+
+    @IBAction func evenMoreButton(sender: UIButton) {
+        evenMore.callWithArguments(nil)
+    }
+
+
+
+    func registerJavascriptMethods() {
         let engine = MacroEngine.sharedInstance
-        engine.context.evaluateScript("setInnerProgress(getInnerProgress() + 1.0)")
-        engine.context.evaluateScript("setInnerProgress(getInnerProgress() + 1.0)")
-        
-        engine.context.evaluateScript("setMiddleProgress(getMiddleProgress() + 1.0)")
-        engine.context.evaluateScript("setMiddleProgress(getMiddleProgress() + 1.0)")
-        
-        engine.context.evaluateScript("setOuterProgress(getOuterProgress() + 1.0)")
-        engine.context.evaluateScript("setOuterProgress(getOuterProgress() + 1.0)")
+
+        engine.context.evaluateScript(jsEvenLess)
+        engine.context.evaluateScript(jsEvenMore)
+        engine.context.evaluateScript(jsMore)
+        engine.context.evaluateScript(jsLess)
+
+        evenLess = engine.context.objectForKeyedSubscript("evenLess")
+        lessFunction = engine.context.objectForKeyedSubscript("lessFunction")
+        evenMore = engine.context.objectForKeyedSubscript("evenMore")
+        moreFunction = engine.context.objectForKeyedSubscript("moreFunction")
+    }
+
+    func innerProgressUpdate(progress: Float) {
+        innerRingView.progress = CGFloat(progress)
+    }
+
+    func middleProgressUpdate(progress: Float) {
+        middleRingView.progress = CGFloat(progress)
+    }
+
+    func outerProgressUpdate(progress: Float) {
+        outerRingView.progress = CGFloat(progress)
     }
 }
 

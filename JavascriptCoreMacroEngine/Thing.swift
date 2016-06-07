@@ -25,25 +25,51 @@
 import Foundation
 import JavaScriptCore
 
+protocol ProgressUpdate {
+    func innerProgressUpdate(progress: Float)
+    func middleProgressUpdate(progress: Float)
+    func outerProgressUpdate(progress: Float)
+}
 
-struct Thing: MacroEngineSupport {
+
+class Thing: MacroEngineSupport {
     static var sharedInstance: Thing = Thing()
+
+    var delegate: ProgressUpdate?
     
     var innerProgress: Float {
         didSet {
-            print("New inner progress \(innerProgress)")
+            if innerProgress < 0.0 {
+                innerProgress = 0
+            } else if innerProgress > 10.0 {
+                innerProgress = 10.0
+            }
+
+            delegate?.innerProgressUpdate(innerProgress)
         }
     }
     
     var middleProgress: Float {
         didSet {
-            print("New middle progress \(middleProgress)")
+            if middleProgress < 0.0 {
+                middleProgress = 0.0
+            } else if middleProgress > 10.0 {
+                middleProgress = 10.0
+            }
+
+            delegate?.middleProgressUpdate(middleProgress)
         }
     }
     
     var outerProgress: Float {
         didSet {
-            print("New outer progress \(outerProgress)")
+            if outerProgress < 0.0 {
+                outerProgress = 0.0
+            } else if outerProgress > 10.0 {
+                outerProgress = 10.0
+            }
+
+            delegate?.outerProgressUpdate(outerProgress)
         }
     }
     

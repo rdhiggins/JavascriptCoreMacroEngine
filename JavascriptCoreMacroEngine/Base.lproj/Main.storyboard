@@ -136,7 +136,48 @@
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="usx-ow-ZWt" userLabel="Control View">
                                         <rect key="frame" x="0.0" y="290" width="568" height="282"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="fy5-3q-e2a">
+                                                <rect key="frame" x="8" y="8" width="552" height="30"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jvX-6j-D8h" userLabel="Even Less Button">
+                                                        <rect key="frame" x="0.0" y="0.0" width="138" height="30"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                                        <state key="normal" title="&lt;&lt;"/>
+                                                        <connections>
+                                                            <action selector="evenLessButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1x4-DW-eea"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aRe-2z-0EJ" userLabel="Less Button">
+                                                        <rect key="frame" x="138" y="0.0" width="138" height="30"/>
+                                                        <state key="normal" title="Less"/>
+                                                        <connections>
+                                                            <action selector="lessButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nDV-FB-PmP"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7dV-kI-jyL" userLabel="More Button">
+                                                        <rect key="frame" x="276" y="0.0" width="138" height="30"/>
+                                                        <state key="normal" title="More"/>
+                                                        <connections>
+                                                            <action selector="moreButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SyV-Kx-2bp"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Gc-7k-8td" userLabel="Even More Button">
+                                                        <rect key="frame" x="414" y="0.0" width="138" height="30"/>
+                                                        <state key="normal" title="&gt;&gt;"/>
+                                                        <connections>
+                                                            <action selector="evenMoreButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="R9z-Mi-Zav"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="fy5-3q-e2a" firstAttribute="leading" secondItem="usx-ow-ZWt" secondAttribute="leading" constant="8" id="D9g-P0-qJH"/>
+                                            <constraint firstItem="fy5-3q-e2a" firstAttribute="top" secondItem="usx-ow-ZWt" secondAttribute="top" constant="8" id="iSU-nf-uZa"/>
+                                            <constraint firstAttribute="trailing" secondItem="fy5-3q-e2a" secondAttribute="trailing" constant="8" id="p3V-5y-aEW"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
                             </stackView>
