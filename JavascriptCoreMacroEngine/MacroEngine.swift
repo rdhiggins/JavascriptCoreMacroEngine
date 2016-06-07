@@ -37,8 +37,9 @@ class MacroEngine {
 
 
     func setMethod(javascript: String, key: String) -> JSValue! {
-        context.evaluateScript(javascript)
-
+        let script = "var \(key) = \(javascript)"
+        context.evaluateScript(script)
+        
         return context.objectForKeyedSubscript(key)
     }
 
@@ -56,21 +57,31 @@ class MacroEngine {
 class MacroMethod {
 
     private let engine = MacroEngine.sharedInstance
-    private let jsValue: JSValue!
+    private var jsValue: JSValue!
 
-    var javascript: String
+    var javascript: String {
+        didSet {
+            setMethod()
+        }
+    }
+    
     let key: String
 
 
     init(javascript: String, key: String) {
         self.key = key
         self.javascript = javascript
-
-        jsValue = engine.setMethod(javascript, key: key)
+        
+        setMethod()
     }
 
-
-    func call(params: [AnyObject]!) -> JSValue! {
+    
+    func call(params: AnyObject...) -> JSValue! {
         return jsValue.callWithArguments(params)
+    }
+    
+    
+    private func setMethod() {
+        jsValue = engine.setMethod(javascript, key: key)
     }
 }
