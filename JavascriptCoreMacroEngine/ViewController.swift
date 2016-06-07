@@ -31,6 +31,7 @@ class ViewController: UIViewController, ProgressUpdate {
     @IBOutlet weak var innerRingView: CustomProgressView!
     @IBOutlet weak var middleRingView: CustomProgressView!
     @IBOutlet weak var outerRingView: CustomProgressView!
+    @IBOutlet weak var codeView: CodeView!
 
     private var evenMore: MacroMethod?
     private var moreFunction: MacroMethod?
@@ -59,21 +60,25 @@ class ViewController: UIViewController, ProgressUpdate {
 
     @IBAction func evenLessButton(sender: UIButton) {
         evenLess?.call()
+        codeView.text = evenLess?.javascript
     }
 
 
     @IBAction func lessButton(sender: UIButton) {
         lessFunction?.call()
+        codeView.text = lessFunction?.javascript
     }
 
 
     @IBAction func moreButton(sender: UIButton) {
         moreFunction?.call()
+        codeView.text = moreFunction?.javascript
     }
 
 
     @IBAction func evenMoreButton(sender: UIButton) {
         evenMore?.call()
+        codeView.text = evenMore?.javascript
     }
 
     func registerJavascriptMethods() {
@@ -93,6 +98,9 @@ class ViewController: UIViewController, ProgressUpdate {
 
     func outerProgressUpdate(progress: Float) {
         outerRingView.progress = CGFloat(progress)
+    }
+    
+    @IBAction func editButton(sender: UIButton) {
     }
     
     private func loadJavascriptFile(key: String) -> MacroMethod {
