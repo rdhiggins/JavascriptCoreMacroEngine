@@ -15,6 +15,10 @@
 		7DAB44E31D00BF46004DA41E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DAB44E11D00BF46004DA41E /* Main.storyboard */; };
 		7DAB44E51D00BF46004DA41E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DAB44E41D00BF46004DA41E /* Assets.xcassets */; };
 		7DAB44E81D00BF46004DA41E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DAB44E61D00BF46004DA41E /* LaunchScreen.storyboard */; };
+		7DD871791D07345E007DD77E /* more.js in Resources */ = {isa = PBXBuildFile; fileRef = 7DD871781D07345E007DD77E /* more.js */; };
+		7DD8717B1D07377A007DD77E /* evenMore.js in Resources */ = {isa = PBXBuildFile; fileRef = 7DD8717A1D07377A007DD77E /* evenMore.js */; };
+		7DD8717D1D07380B007DD77E /* less.js in Resources */ = {isa = PBXBuildFile; fileRef = 7DD8717C1D07380B007DD77E /* less.js */; };
+		7DD8717F1D073817007DD77E /* evenLess.js in Resources */ = {isa = PBXBuildFile; fileRef = 7DD8717E1D073817007DD77E /* evenLess.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +32,10 @@
 		7DAB44E41D00BF46004DA41E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7DAB44E71D00BF46004DA41E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7DAB44E91D00BF46004DA41E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7DD871781D07345E007DD77E /* more.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = more.js; sourceTree = "<group>"; };
+		7DD8717A1D07377A007DD77E /* evenMore.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = evenMore.js; sourceTree = "<group>"; };
+		7DD8717C1D07380B007DD77E /* less.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = less.js; sourceTree = "<group>"; };
+		7DD8717E1D073817007DD77E /* evenLess.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = evenLess.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +68,7 @@
 		7DAB44DC1D00BF46004DA41E /* JavascriptCoreMacroEngine */ = {
 			isa = PBXGroup;
 			children = (
+				7DD871771D07336C007DD77E /* Javascripts */,
 				7D4BC5531D00CEEF00E5A42C /* CustomProgressView.swift */,
 				7DAB44DD1D00BF46004DA41E /* AppDelegate.swift */,
 				7DAB44DF1D00BF46004DA41E /* ViewController.swift */,
@@ -71,6 +80,17 @@
 				7D8FC3001D06208C00E0D4DC /* MacroEngine.swift */,
 			);
 			path = JavascriptCoreMacroEngine;
+			sourceTree = "<group>";
+		};
+		7DD871771D07336C007DD77E /* Javascripts */ = {
+			isa = PBXGroup;
+			children = (
+				7DD871781D07345E007DD77E /* more.js */,
+				7DD8717A1D07377A007DD77E /* evenMore.js */,
+				7DD8717C1D07380B007DD77E /* less.js */,
+				7DD8717E1D073817007DD77E /* evenLess.js */,
+			);
+			name = Javascripts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -131,9 +151,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DD8717B1D07377A007DD77E /* evenMore.js in Resources */,
 				7DAB44E81D00BF46004DA41E /* LaunchScreen.storyboard in Resources */,
+				7DD871791D07345E007DD77E /* more.js in Resources */,
+				7DD8717D1D07380B007DD77E /* less.js in Resources */,
 				7DAB44E51D00BF46004DA41E /* Assets.xcassets in Resources */,
 				7DAB44E31D00BF46004DA41E /* Main.storyboard in Resources */,
+				7DD8717F1D073817007DD77E /* evenLess.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
