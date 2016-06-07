@@ -1,4 +1,4 @@
-function(value) {
+function() {
     var currentInner = getInnerProgress();
     var currentMiddle = getMiddleProgress();
     var currentOuter = getOuterProgress();
