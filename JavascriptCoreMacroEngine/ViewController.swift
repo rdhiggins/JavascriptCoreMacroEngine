@@ -77,10 +77,10 @@ class ViewController: UIViewController, ProgressUpdate {
     @IBOutlet weak var middleRingView: CustomProgressView!
     @IBOutlet weak var outerRingView: CustomProgressView!
 
-    private var evenMore: JSValue!
-    private var moreFunction: JSValue!
-    private var evenLess: JSValue!
-    private var lessFunction: JSValue!
+    private var evenMore: MacroMethod?
+    private var moreFunction: MacroMethod?
+    private var evenLess: MacroMethod?
+    private var lessFunction: MacroMethod?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,38 +103,31 @@ class ViewController: UIViewController, ProgressUpdate {
 
 
     @IBAction func evenLessButton(sender: UIButton) {
-        evenLess.callWithArguments(nil)
+        evenLess?.call(nil)
     }
 
 
     @IBAction func lessButton(sender: UIButton) {
-        lessFunction.callWithArguments(nil)
+        lessFunction?.call(nil)
     }
 
 
     @IBAction func moreButton(sender: UIButton) {
-        moreFunction.callWithArguments(nil)
+        moreFunction?.call(nil)
     }
 
 
     @IBAction func evenMoreButton(sender: UIButton) {
-        evenMore.callWithArguments(nil)
+        evenMore?.call(nil)
     }
 
 
 
     func registerJavascriptMethods() {
-        let engine = MacroEngine.sharedInstance
-
-        engine.context.evaluateScript(jsEvenLess)
-        engine.context.evaluateScript(jsEvenMore)
-        engine.context.evaluateScript(jsMore)
-        engine.context.evaluateScript(jsLess)
-
-        evenLess = engine.context.objectForKeyedSubscript("evenLess")
-        lessFunction = engine.context.objectForKeyedSubscript("lessFunction")
-        evenMore = engine.context.objectForKeyedSubscript("evenMore")
-        moreFunction = engine.context.objectForKeyedSubscript("moreFunction")
+        evenLess = MacroMethod(javascript: jsEvenLess, key: "evenLess")
+        lessFunction = MacroMethod(javascript: jsLess, key: "lessFunction")
+        evenMore = MacroMethod(javascript: jsEvenMore, key: "evenMore")
+        moreFunction = MacroMethod(javascript: jsMore, key: "moreFunction")
     }
 
     func innerProgressUpdate(progress: Float) {
