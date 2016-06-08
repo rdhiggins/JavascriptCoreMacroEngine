@@ -1,10 +1,27 @@
 //
-//  CodeView.swift
-//  JavascriptCoreMacroEngine
+// CodeView.swift
+// MIT License
 //
-//  Created by Rodger Higgins on 6/7/16.
-//  Copyright © 2016 Spazstik Software. All rights reserved.
+// Copyright (c) 2016 Spazstik Software, LLC
 //
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+
 
 import UIKit
 
@@ -12,14 +29,18 @@ import UIKit
 class CodeView: UIView {
     
     @IBInspectable var text: String? {
-        didSet {
-            textView?.text = text
+        set {
+            textView?.text = newValue
+        }
+        get {
+            return textView?.text
         }
     }
 
     @IBInspectable var gutterWidth: CGFloat = 40.0 {
         didSet {
             textView?.gutterWidth = gutterWidth
+            layoutManager?.gutterWidth = gutterWidth
         }
     }
     
@@ -54,10 +75,16 @@ class CodeView: UIView {
         }
     }
     
-    @IBInspectable var font: UIFont? = UIFont.monospacedDigitSystemFontOfSize(10.0, weight: UIFontWeightThin) {
+    @IBInspectable var font: UIFont? = UIFont.monospacedDigitSystemFontOfSize(14.0, weight: UIFontWeightThin) {
         didSet {
             textView?.font = font
             layoutManager?.font = font
+        }
+    }
+    
+    @IBInspectable var canEdit: Bool = true {
+        didSet {
+            textView?.editable = canEdit
         }
     }
 
@@ -109,7 +136,7 @@ class CodeView: UIView {
         textView.gutterBorderColor = gutterBorderColor
         textView.font = font
         textView.backgroundColor = UIColor.clearColor()
-        textView.editable = false
+        textView.editable = canEdit
         
         addSubview(textView)
     }

@@ -37,10 +37,10 @@
                                                         <color key="value" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
-                                                        <real key="value" value="40"/>
+                                                        <integer key="value" value="20"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
-                                                        <real key="value" value="5"/>
+                                                        <integer key="value" value="5"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
                                                         <size key="value" width="10" height="0.0"/>
@@ -66,7 +66,7 @@
                                                         <color key="value" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
-                                                        <real key="value" value="40"/>
+                                                        <integer key="value" value="20"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
                                                         <real key="value" value="5"/>
@@ -81,7 +81,7 @@
                                                         <real key="value" value="1"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="ringInset">
-                                                        <real key="value" value="45"/>
+                                                        <integer key="value" value="22"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
@@ -98,7 +98,7 @@
                                                         <color key="value" red="0.40000000600000002" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
-                                                        <real key="value" value="40"/>
+                                                        <integer key="value" value="20"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
                                                         <real key="value" value="5"/>
@@ -113,7 +113,7 @@
                                                         <real key="value" value="1"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="ringInset">
-                                                        <real key="value" value="90"/>
+                                                        <integer key="value" value="44"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
@@ -138,54 +138,45 @@
                                         <rect key="frame" x="0.0" y="290" width="568" height="282"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="fy5-3q-e2a">
-                                                <rect key="frame" x="8" y="8" width="552" height="30"/>
+                                                <rect key="frame" x="8" y="8" width="552" height="36"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jvX-6j-D8h" userLabel="Even Less Button">
-                                                        <rect key="frame" x="0.0" y="0.0" width="138" height="30"/>
-                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="138" height="36"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                         <state key="normal" title="&lt;&lt;"/>
                                                         <connections>
-                                                            <action selector="evenLessButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1x4-DW-eea"/>
+                                                            <action selector="executeMacroButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="G8x-96-V7Y"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aRe-2z-0EJ" userLabel="Less Button">
-                                                        <rect key="frame" x="138" y="0.0" width="138" height="30"/>
+                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aRe-2z-0EJ" userLabel="Less Button">
+                                                        <rect key="frame" x="138" y="0.0" width="138" height="36"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                         <state key="normal" title="Less"/>
                                                         <connections>
-                                                            <action selector="lessButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nDV-FB-PmP"/>
+                                                            <action selector="executeMacroButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5al-RG-sQK"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7dV-kI-jyL" userLabel="More Button">
-                                                        <rect key="frame" x="276" y="0.0" width="138" height="30"/>
+                                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7dV-kI-jyL" userLabel="More Button">
+                                                        <rect key="frame" x="276" y="0.0" width="138" height="36"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                         <state key="normal" title="More"/>
                                                         <connections>
-                                                            <action selector="moreButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SyV-Kx-2bp"/>
+                                                            <action selector="executeMacroButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bA9-IV-haC"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Gc-7k-8td" userLabel="Even More Button">
-                                                        <rect key="frame" x="414" y="0.0" width="138" height="30"/>
+                                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Gc-7k-8td" userLabel="Even More Button">
+                                                        <rect key="frame" x="414" y="0.0" width="138" height="36"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                         <state key="normal" title="&gt;&gt;"/>
                                                         <connections>
-                                                            <action selector="evenMoreButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="R9z-Mi-Zav"/>
+                                                            <action selector="executeMacroButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mGJ-we-YWS"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BHW-ni-OKs" userLabel="CodeView" customClass="CodeView" customModule="JavascriptCoreMacroEngine" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="46" width="552" height="190"/>
+                                                <rect key="frame" x="8" y="52" width="552" height="178"/>
                                                 <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="text">
-                                                        <string key="value">function() {
-    var currentInner = getInnerProgress();
-    var currentMiddle = getMiddleProgress();
-    var currentOuter = getOuterProgress();
-
-    setInnerProgress(currentInner + Math.random() / 10.0);
-    setMiddleProgress(currentMiddle + Math.random() / 10.0);
-    setOuterProgress(currentOuter + Math.random() / 10.0);
-}
-</string>
-                                                    </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="textColor">
                                                         <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </userDefinedRuntimeAttribute>
@@ -199,18 +190,21 @@
                                                         <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="gutterWidth">
-                                                        <real key="value" value="40"/>
+                                                        <real key="value" value="32"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="gutterBorderWidth">
                                                         <real key="value" value="1"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="canEdit" value="NO"/>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iY1-bT-jtB">
-                                                <rect key="frame" x="269" y="244" width="30" height="30"/>
+                                                <rect key="frame" x="267" y="238" width="35" height="36"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <state key="normal" title="Edit"/>
                                                 <connections>
                                                     <action selector="editButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Zin-ur-nOk"/>
+                                                    <segue destination="XA5-ZF-RQH" kind="show" identifier="EditMacros" id="g9M-gH-23n"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -248,6 +242,85 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="325" y="387"/>
+        </scene>
+        <!--Edit Macros-->
+        <scene sceneID="bhm-hS-lZD">
+            <objects>
+                <viewController id="XA5-ZF-RQH" userLabel="Edit Macros" customClass="MacroEditViewController" customModule="JavascriptCoreMacroEngine" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xQ2-Av-l1z"/>
+                        <viewControllerLayoutGuide type="bottom" id="J3L-cE-91F"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Hqa-a5-Cc9">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="sY8-sa-o1h">
+                                <rect key="frame" x="209" y="28" width="183" height="29"/>
+                                <segments>
+                                    <segment title="&lt;&lt;"/>
+                                    <segment title="Less"/>
+                                    <segment title="More"/>
+                                    <segment title="&gt;&gt;"/>
+                                </segments>
+                                <connections>
+                                    <action selector="selectedMacro:" destination="XA5-ZF-RQH" eventType="valueChanged" id="Ynx-Ox-HAM"/>
+                                </connections>
+                            </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Z8-eF-9Oh">
+                                <rect key="frame" x="543" y="28" width="37" height="30"/>
+                                <state key="normal" title="Done"/>
+                                <connections>
+                                    <action selector="allDone:" destination="XA5-ZF-RQH" eventType="touchUpInside" id="6wZ-yW-d6T"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mZV-wh-Tnd" customClass="CodeView" customModule="JavascriptCoreMacroEngine" customModuleProvider="target">
+                                <rect key="frame" x="20" y="64" width="560" height="528"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="gutterBackgroundColor">
+                                        <color key="value" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="gutterTextColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="gutterBorderColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="canEdit" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WmV-Rc-nEP" userLabel="KeyboardResizeView" customClass="KeyboardSpacingView" customModule="JavascriptCoreMacroEngine" customModuleProvider="target">
+                                <rect key="frame" x="20" y="592" width="560" height="0.0"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" placeholder="YES" id="W0X-o1-oeo"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="WmV-Rc-nEP" firstAttribute="leading" secondItem="Hqa-a5-Cc9" secondAttribute="leadingMargin" id="4Qa-cp-ZPo"/>
+                            <constraint firstItem="6Z8-eF-9Oh" firstAttribute="top" secondItem="xQ2-Av-l1z" secondAttribute="bottom" constant="8" id="Ep5-4b-dJa"/>
+                            <constraint firstItem="sY8-sa-o1h" firstAttribute="centerX" secondItem="Hqa-a5-Cc9" secondAttribute="centerX" id="HbM-YH-0zs"/>
+                            <constraint firstItem="sY8-sa-o1h" firstAttribute="top" secondItem="xQ2-Av-l1z" secondAttribute="bottom" constant="8" id="NjM-0p-Jb8"/>
+                            <constraint firstItem="WmV-Rc-nEP" firstAttribute="trailing" secondItem="Hqa-a5-Cc9" secondAttribute="trailingMargin" id="O2s-RU-4OV"/>
+                            <constraint firstItem="mZV-wh-Tnd" firstAttribute="top" secondItem="6Z8-eF-9Oh" secondAttribute="bottom" constant="6" id="Qxn-YI-GiH"/>
+                            <constraint firstItem="mZV-wh-Tnd" firstAttribute="leading" secondItem="Hqa-a5-Cc9" secondAttribute="leadingMargin" id="YKU-od-XDU"/>
+                            <constraint firstItem="6Z8-eF-9Oh" firstAttribute="trailing" secondItem="Hqa-a5-Cc9" secondAttribute="trailingMargin" id="bXq-bu-6Iu"/>
+                            <constraint firstItem="WmV-Rc-nEP" firstAttribute="top" secondItem="mZV-wh-Tnd" secondAttribute="bottom" id="o5O-nN-rzk"/>
+                            <constraint firstItem="J3L-cE-91F" firstAttribute="top" secondItem="WmV-Rc-nEP" secondAttribute="bottom" constant="8" id="rQP-vY-ugC"/>
+                            <constraint firstItem="mZV-wh-Tnd" firstAttribute="trailing" secondItem="Hqa-a5-Cc9" secondAttribute="trailingMargin" id="yTO-bm-18A"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="codeView" destination="mZV-wh-Tnd" id="fvv-L1-p0e"/>
+                        <outlet property="macroSelector" destination="sY8-sa-o1h" id="jYg-VM-hlm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a0P-qy-gp1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1094" y="387"/>
         </scene>
     </scenes>
 </document>

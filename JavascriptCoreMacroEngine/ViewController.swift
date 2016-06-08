@@ -26,17 +26,14 @@ import UIKit
 import JavaScriptCore
 
 
-class ViewController: UIViewController, ProgressUpdate {
+class ViewController: UIViewController, ProgressUpdate, MacroEditResults {
 
     @IBOutlet weak var innerRingView: CustomProgressView!
     @IBOutlet weak var middleRingView: CustomProgressView!
     @IBOutlet weak var outerRingView: CustomProgressView!
     @IBOutlet weak var codeView: CodeView!
 
-    private var evenMore: MacroMethod?
-    private var moreFunction: MacroMethod?
-    private var evenLess: MacroMethod?
-    private var lessFunction: MacroMethod?
+    private var macros: [MacroMethod] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,34 +55,17 @@ class ViewController: UIViewController, ProgressUpdate {
     }
 
 
-    @IBAction func evenLessButton(sender: UIButton) {
-        evenLess?.call()
-        codeView.text = evenLess?.javascript
+    @IBAction func executeMacroButton(sender: UIButton) {
+        macros[sender.tag].call()
+        codeView?.text = macros[sender.tag].javascript
     }
+    
 
-
-    @IBAction func lessButton(sender: UIButton) {
-        lessFunction?.call()
-        codeView.text = lessFunction?.javascript
-    }
-
-
-    @IBAction func moreButton(sender: UIButton) {
-        moreFunction?.call()
-        codeView.text = moreFunction?.javascript
-    }
-
-
-    @IBAction func evenMoreButton(sender: UIButton) {
-        evenMore?.call()
-        codeView.text = evenMore?.javascript
-    }
-
-    func registerJavascriptMethods() {
-        evenLess = loadJavascriptFile("evenLess")
-        lessFunction = loadJavascriptFile("less")
-        evenMore = loadJavascriptFile("evenMore")
-        moreFunction = loadJavascriptFile("more")
+    private func registerJavascriptMethods() {
+        macros.append(loadJavascriptFile("evenLess"))
+        macros.append(loadJavascriptFile("less"))
+        macros.append(loadJavascriptFile("more"))
+        macros.append(loadJavascriptFile("evenMore"))
     }
 
     func innerProgressUpdate(progress: Float) {
@@ -112,6 +92,19 @@ class ViewController: UIViewController, ProgressUpdate {
         let script = try! String(contentsOfFile: filePath, encoding: NSUTF8StringEncoding)
         
         return MacroMethod(javascript: script, key: key)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "EditMacros" {
+            if let mevc = segue.destinationViewController as? MacroEditViewController {
+                mevc.macros = macros
+                
+                mevc.delegate = self
+            }
+        }
+    }
+    
+    func results(macros: [MacroMethod]) {
     }
 }
 

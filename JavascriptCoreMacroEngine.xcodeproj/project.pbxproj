@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		7D2F2E841D05F9C900E837B8 /* Thing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2F2E831D05F9C900E837B8 /* Thing.swift */; };
 		7D4BC5541D00CEEF00E5A42C /* CustomProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4BC5531D00CEEF00E5A42C /* CustomProgressView.swift */; };
+		7D4C2C201D08C2AA0055EC6C /* MacroMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4C2C1F1D08C2AA0055EC6C /* MacroMethod.swift */; };
+		7D55B18F1D086AAB00C341FB /* MacroEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D55B18E1D086AAB00C341FB /* MacroEditViewController.swift */; };
+		7D7E47011D08A8EC006CBB97 /* KeyboardSpacingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7E47001D08A8EC006CBB97 /* KeyboardSpacingView.swift */; };
 		7D8FC3011D06208C00E0D4DC /* MacroEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8FC3001D06208C00E0D4DC /* MacroEngine.swift */; };
 		7DAB44DE1D00BF46004DA41E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAB44DD1D00BF46004DA41E /* AppDelegate.swift */; };
 		7DAB44E01D00BF46004DA41E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAB44DF1D00BF46004DA41E /* ViewController.swift */; };
@@ -27,6 +30,9 @@
 /* Begin PBXFileReference section */
 		7D2F2E831D05F9C900E837B8 /* Thing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Thing.swift; sourceTree = "<group>"; };
 		7D4BC5531D00CEEF00E5A42C /* CustomProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomProgressView.swift; sourceTree = "<group>"; };
+		7D4C2C1F1D08C2AA0055EC6C /* MacroMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MacroMethod.swift; sourceTree = "<group>"; };
+		7D55B18E1D086AAB00C341FB /* MacroEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MacroEditViewController.swift; sourceTree = "<group>"; };
+		7D7E47001D08A8EC006CBB97 /* KeyboardSpacingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardSpacingView.swift; sourceTree = "<group>"; };
 		7D8FC3001D06208C00E0D4DC /* MacroEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MacroEngine.swift; sourceTree = "<group>"; };
 		7DAB44DA1D00BF46004DA41E /* JavascriptCoreMacroEngine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JavascriptCoreMacroEngine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DAB44DD1D00BF46004DA41E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -55,6 +61,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7D4C2C1E1D08C2920055EC6C /* MacroEngine */ = {
+			isa = PBXGroup;
+			children = (
+				7D8FC3001D06208C00E0D4DC /* MacroEngine.swift */,
+				7D4C2C1F1D08C2AA0055EC6C /* MacroMethod.swift */,
+			);
+			name = MacroEngine;
+			sourceTree = "<group>";
+		};
+		7D7E46FF1D08A8CF006CBB97 /* Keyboard */ = {
+			isa = PBXGroup;
+			children = (
+				7D7E47001D08A8EC006CBB97 /* KeyboardSpacingView.swift */,
+			);
+			name = Keyboard;
+			sourceTree = "<group>";
+		};
 		7DAB44D11D00BF46004DA41E = {
 			isa = PBXGroup;
 			children = (
@@ -74,18 +97,19 @@
 		7DAB44DC1D00BF46004DA41E /* JavascriptCoreMacroEngine */ = {
 			isa = PBXGroup;
 			children = (
-				7DD871801D074BC6007DD77E /* LineNumberTextView */,
+				7D4C2C1E1D08C2920055EC6C /* MacroEngine */,
+				7D7E46FF1D08A8CF006CBB97 /* Keyboard */,
+				7DD871801D074BC6007DD77E /* CodeView */,
 				7DD871771D07336C007DD77E /* Javascripts */,
-				7D4BC5531D00CEEF00E5A42C /* CustomProgressView.swift */,
-				7DAB44DD1D00BF46004DA41E /* AppDelegate.swift */,
+				7D2F2E831D05F9C900E837B8 /* Thing.swift */,
 				7DAB44DF1D00BF46004DA41E /* ViewController.swift */,
+				7D4BC5531D00CEEF00E5A42C /* CustomProgressView.swift */,
+				7D55B18E1D086AAB00C341FB /* MacroEditViewController.swift */,
+				7DAB44DD1D00BF46004DA41E /* AppDelegate.swift */,
 				7DAB44E11D00BF46004DA41E /* Main.storyboard */,
 				7DAB44E41D00BF46004DA41E /* Assets.xcassets */,
 				7DAB44E61D00BF46004DA41E /* LaunchScreen.storyboard */,
 				7DAB44E91D00BF46004DA41E /* Info.plist */,
-				7D2F2E831D05F9C900E837B8 /* Thing.swift */,
-				7D8FC3001D06208C00E0D4DC /* MacroEngine.swift */,
-				7DD871851D076D8B007DD77E /* CodeView.swift */,
 			);
 			path = JavascriptCoreMacroEngine;
 			sourceTree = "<group>";
@@ -101,13 +125,14 @@
 			name = Javascripts;
 			sourceTree = "<group>";
 		};
-		7DD871801D074BC6007DD77E /* LineNumberTextView */ = {
+		7DD871801D074BC6007DD77E /* CodeView */ = {
 			isa = PBXGroup;
 			children = (
+				7DD871851D076D8B007DD77E /* CodeView.swift */,
 				7DD871811D074BF1007DD77E /* LineNumberTextView.swift */,
 				7DD871831D0750C3007DD77E /* LineNumberLayoutManager.swift */,
 			);
-			name = LineNumberTextView;
+			name = CodeView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,6 +167,7 @@
 				TargetAttributes = {
 					7DAB44D91D00BF46004DA41E = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 9XE3B5FL7L;
 					};
 				};
 			};
@@ -186,11 +212,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D8FC3011D06208C00E0D4DC /* MacroEngine.swift in Sources */,
+				7D55B18F1D086AAB00C341FB /* MacroEditViewController.swift in Sources */,
 				7DD871841D0750C3007DD77E /* LineNumberLayoutManager.swift in Sources */,
 				7D2F2E841D05F9C900E837B8 /* Thing.swift in Sources */,
 				7DAB44E01D00BF46004DA41E /* ViewController.swift in Sources */,
 				7DAB44DE1D00BF46004DA41E /* AppDelegate.swift in Sources */,
+				7D4C2C201D08C2AA0055EC6C /* MacroMethod.swift in Sources */,
 				7DD871821D074BF1007DD77E /* LineNumberTextView.swift in Sources */,
+				7D7E47011D08A8EC006CBB97 /* KeyboardSpacingView.swift in Sources */,
 				7D4BC5541D00CEEF00E5A42C /* CustomProgressView.swift in Sources */,
 				7DD871861D076D8B007DD77E /* CodeView.swift in Sources */,
 			);
@@ -307,11 +336,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = JavascriptCoreMacroEngine/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.spazsoft.ios.tutorials..JavascriptCoreMacroEngine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -319,11 +351,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = JavascriptCoreMacroEngine/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.spazsoft.ios.tutorials..JavascriptCoreMacroEngine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
