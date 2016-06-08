@@ -38,6 +38,7 @@ class CodeView: UIView {
     @IBInspectable var gutterTextColor: UIColor = UIColor.blackColor() {
         didSet {
             textView?.gutterTextColor = gutterTextColor
+            layoutManager?.textColor = gutterTextColor
         }
     }
     
@@ -56,11 +57,12 @@ class CodeView: UIView {
     @IBInspectable var font: UIFont? = UIFont.monospacedDigitSystemFontOfSize(10.0, weight: UIFontWeightThin) {
         didSet {
             textView?.font = font
+            layoutManager?.font = font
         }
     }
 
     var textContainer: NSTextContainer!
-    var layoutManager: NSLayoutManager!
+    var layoutManager: LineNumberLayoutManager!
     var textStorage: NSTextStorage!
     var textView: LineNumberTextView!
     
@@ -107,6 +109,7 @@ class CodeView: UIView {
         textView.gutterBorderColor = gutterBorderColor
         textView.font = font
         textView.backgroundColor = UIColor.clearColor()
+        textView.editable = false
         
         addSubview(textView)
     }
