@@ -27,22 +27,35 @@ import Foundation
 import JavaScriptCore
 
 
+/// Protocol used by the MacroEngine to setup the macro objects for a class.
 protocol MacroEngineSupport {
     func addMacroSupport(engine: MacroEngine)
 }
 
 
+/// Class that manages the macro engine.  It has a static sharedInstance
+/// property that should be used.
 class MacroEngine {
+    
+    /// Static property for the one global instance of the MacroEngine
     static let sharedInstance: MacroEngine = MacroEngine()
+
     
+    /// JavascriptCore context instance that the macro engine is using
     let context: JSContext = JSContext()
-    
+
     
     init() {
         setupExceptionHandler()
     }
     
     
+    /// Mthod used to add a object to the macro engine.  This method
+    /// uses the MacroEngineSupport property to call the object's
+    /// macro initialization method.
+    ///
+    /// - parameter object: Object supporting the MacroEngineSupport
+    /// protocol
     func addObject(object: MacroEngineSupport) {
         object.addMacroSupport(self)
     }
