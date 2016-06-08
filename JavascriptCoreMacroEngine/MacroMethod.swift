@@ -26,18 +26,22 @@
 import Foundation
 import JavaScriptCore
 
-
+/// Class that is used to implementing javascript methods.  Use an instance
+/// to manage and execute a javascript method.
 class MacroMethod {
     
     private let engine = MacroEngine.sharedInstance
     private var jsValue: JSValue!
-    
+
+    /// Property that contains the javascript method
     var javascript: String {
         didSet {
             setMethod()
         }
     }
-    
+
+
+    /// The name in the javascript context of the method
     let key: String
     
     
@@ -48,12 +52,20 @@ class MacroMethod {
         setMethod()
     }
     
-    
+
+    /// This method is used to invoke the javascript method.
+    ///
+    /// - parameter [params]:   The parameters for the javascript method.
+    ///
+    /// - return: A JSValue object result returned by the javascript
+    /// method
     func call(params: AnyObject...) -> JSValue! {
         return jsValue.callWithArguments(params)
     }
     
-    
+
+    /// A private method used to configure the javascript method
+    /// into the macro engine's context
     private func setMethod() {
         jsValue = engine.setMethod(javascript, key: key)
     }
