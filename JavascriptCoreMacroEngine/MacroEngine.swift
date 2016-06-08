@@ -23,7 +23,7 @@
 // SOFTWARE.
 
 
-import Foundation
+import UIKit
 import JavaScriptCore
 
 
@@ -50,7 +50,7 @@ class MacroEngine {
     }
     
     
-    /// Mthod used to add a object to the macro engine.  This method
+    /// Method used to add a object to the macro engine.  This method
     /// uses the MacroEngineSupport property to call the object's
     /// macro initialization method.
     ///
@@ -61,11 +61,25 @@ class MacroEngine {
     }
 
 
+    /// Call this method is inject a callback block into the javascript
+    /// context.  This will allow any javascript code to call this block
+    ///
+    /// - parameter block:  Objective-C block
+    /// - parameter key: String to use as the object name in the javascript
+    /// context.
     func insertBlockAsObject<BlockType>(block: BlockType, key: String) {
-        context.setObject(unsafeBitCast(block, AnyObject.self), forKeyedSubscript: key)
+
+        context.setObject(unsafeBitCast(block, AnyObject.self),
+                          forKeyedSubscript: key)
     }
 
 
+    /// This method is called to register a javascript method.  It returns the
+    /// JSValue to use to call this method from swift.
+    ///
+    /// - parameter javascript: String containing the javascript for this
+    /// method.
+    /// - parameter key: String containing the joavascript context name
     func setMethod(javascript: String, key: String) -> JSValue! {
         let script = "var \(key) = \(javascript)"
         context.evaluateScript(script)
@@ -74,9 +88,21 @@ class MacroEngine {
     }
 
 
+    /// Private method used to setup the exception handler.  The handler
+    /// presents the error in a alert view
     private func setupExceptionHandler() {
+
         context.exceptionHandler = { context, error in
-            print("JS Exception: \(error)")
+            let alert = UIAlertController(title: "Javascript Evaluation Error", message: error.toString(), preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+
+            UIApplication.sharedApplication()
+                .keyWindow?
+                .rootViewController?
+                .presentedViewController?
+                .presentViewController(alert,
+                                       animated: true,
+                                       completion: nil)
         }
     }
 }
