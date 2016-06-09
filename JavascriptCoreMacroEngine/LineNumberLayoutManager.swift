@@ -44,7 +44,8 @@ class LineNumberLayoutManager: NSLayoutManager {
     var gutterWidth: CGFloat = 40.0
 
     /// Property containing the font to use for the line numbers
-    var font: UIFont! = UIFont.monospacedDigitSystemFontOfSize(14.0, weight: UIFontWeightThin) {
+    var font: UIFont! =
+        UIFont.monospacedDigitSystemFontOfSize(14.0, weight: UIFontWeightThin) {
         didSet {
             setupFontAttributes()
         }
@@ -52,7 +53,9 @@ class LineNumberLayoutManager: NSLayoutManager {
 
     
     private var fontAttributes: [String : NSObject] = [
-        NSFontAttributeName : UIFont.monospacedDigitSystemFontOfSize(14.0, weight: UIFontWeightThin),
+        NSFontAttributeName :
+            UIFont.monospacedDigitSystemFontOfSize(14.0,
+                weight: UIFontWeightThin),
         NSForegroundColorAttributeName : UIColor.whiteColor()
     ]
 
@@ -79,16 +82,28 @@ class LineNumberLayoutManager: NSLayoutManager {
         enumerateLineFragmentsForGlyphRange(glyphsToShow) {
             rect, usedRect, textContainer, glyphRange, stop in
 
-            let charRange = self.characterRangeForGlyphRange(glyphRange, actualGlyphRange: nil)
+            let charRange = self.characterRangeForGlyphRange(glyphRange,
+                                                        actualGlyphRange: nil)
 
-            let before = (self.textStorage!.string as NSString).substringToIndex(charRange.location)
-            let lineNumber = before.componentsSeparatedByCharactersInSet(NSCharacterSet.newlineCharacterSet()).count
+            let before = (self.textStorage!.string as NSString)
+                .substringToIndex(charRange.location)
 
-            let r = CGRect(x: 0, y: rect.origin.y, width: self.gutterWidth, height: rect.size.height)
+            let lineNumber = before
+                .componentsSeparatedByCharactersInSet(
+                    NSCharacterSet.newlineCharacterSet()).count
+
+            let r = CGRect(x: 0,
+                           y: rect.origin.y,
+                           width: self.gutterWidth,
+                           height: rect.size.height)
+
             let gutterRect = CGRectOffset(r, origin.x, origin.y)
             let s = String(format: "%ld", lineNumber)
             let size = s.sizeWithAttributes(self.fontAttributes)
-            let ds = CGRectOffset(gutterRect, CGRectGetWidth(gutterRect) - 4 - size.width, (CGRectGetHeight(gutterRect) - size.height) / 2.0)
+            let ds = CGRectOffset(gutterRect,
+                                  CGRectGetWidth(gutterRect) - 4 - size.width,
+                                  (CGRectGetHeight(gutterRect) - size.height)
+                                    / 2.0)
 
             s.drawInRect(ds, withAttributes: self.fontAttributes)
         }
