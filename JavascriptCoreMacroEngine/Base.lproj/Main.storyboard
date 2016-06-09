@@ -203,7 +203,6 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <state key="normal" title="Edit"/>
                                                 <connections>
-                                                    <action selector="editButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Zin-ur-nOk"/>
                                                     <segue destination="XA5-ZF-RQH" kind="show" identifier="EditMacros" id="g9M-gH-23n"/>
                                                 </connections>
                                             </button>
