@@ -75,7 +75,10 @@ class LineNumberTextView: UITextView {
     /// private method used to configure the view.  It sets up a exclusion
     /// zone with the text container
     private func setup() {
-        let bp = UIBezierPath(rect: CGRect(x: CGFloat(0.0), y: CGFloat(0.0), width: gutterWidth, height: CGFloat(FLT_MAX)))
+        let bp = UIBezierPath(rect: CGRect(x: CGFloat(0.0),
+                                 y: CGFloat(0.0),
+                             width: gutterWidth,
+                            height: CGFloat(FLT_MAX)))
         
         self.textContainer.exclusionPaths = [bp]
         self.contentMode = UIViewContentMode.Redraw
@@ -91,10 +94,21 @@ class LineNumberTextView: UITextView {
         let bounds = self.bounds
         
         CGContextSetFillColorWithColor(context, gutterFillColor.CGColor)
-        CGContextFillRect(context, CGRect(origin: bounds.origin, size: CGSize(width: gutterWidth, height: bounds.size.height)))
+
+        CGContextFillRect(context,
+                          CGRect(origin: bounds.origin,
+                                 size: CGSize(width: gutterWidth,
+                                              height: bounds.size.height)))
+
         CGContextSetStrokeColorWithColor(context, gutterBorderColor.CGColor)
         CGContextSetLineWidth(context, 0.5)
-        CGContextStrokeRect(context, CGRect(x: bounds.origin.x + (gutterWidth - gutterStrokeWidth), y: bounds.origin.y, width: gutterStrokeWidth, height: CGRectGetHeight(bounds)))
+
+        CGContextStrokeRect(context,
+                            CGRect(x: bounds.origin.x +
+                                        (gutterWidth - gutterStrokeWidth),
+                                   y: bounds.origin.y,
+                                   width: gutterStrokeWidth,
+                                   height: CGRectGetHeight(bounds)))
 
         super.drawRect(rect)
     }
