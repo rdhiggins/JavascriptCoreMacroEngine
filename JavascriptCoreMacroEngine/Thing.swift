@@ -25,6 +25,8 @@
 import Foundation
 import JavaScriptCore
 
+
+/// Delegate protocol used to notify when a progress value has been updated
 protocol ProgressUpdate {
     func innerProgressUpdate(progress: Float)
     func middleProgressUpdate(progress: Float)
@@ -32,11 +34,22 @@ protocol ProgressUpdate {
 }
 
 
+
+/// Class used to contain the progress values.  The class registers methods
+/// with the MacroEngine that support setting the values through calling
+/// Objective-C blocks.
 class Thing: MacroEngineSupport {
+
+
+    /// static proerty used to retrieve the one global instance of this class
     static var sharedInstance: Thing = Thing()
 
+
+    /// property used for setting the delegate callback
     var delegate: ProgressUpdate?
-    
+
+
+    /// property containing the inner ring's progress value
     var innerProgress: Float {
         didSet {
             if innerProgress < 0.0 {
@@ -48,7 +61,9 @@ class Thing: MacroEngineSupport {
             delegate?.innerProgressUpdate(innerProgress)
         }
     }
-    
+
+
+    /// property containing the middle ring's progress value
     var middleProgress: Float {
         didSet {
             if middleProgress < 0.0 {
@@ -60,7 +75,9 @@ class Thing: MacroEngineSupport {
             delegate?.middleProgressUpdate(middleProgress)
         }
     }
-    
+
+
+    /// property containing the outer ring's progress value
     var outerProgress: Float {
         didSet {
             if outerProgress < 0.0 {
@@ -72,7 +89,8 @@ class Thing: MacroEngineSupport {
             delegate?.outerProgressUpdate(outerProgress)
         }
     }
-    
+
+
     init(innerProgress: Float = 0.0, middleProgress: Float = 0.0, outerProgress: Float = 0.0) {
         self.innerProgress = innerProgress
         self.middleProgress = middleProgress
@@ -81,7 +99,13 @@ class Thing: MacroEngineSupport {
         // Add to macro enginer
         MacroEngine.sharedInstance.addObject(self)
     }
-    
+
+
+    /// MacroEngine protocol method used to register the blocks used
+    /// by javascript.
+    ///
+    /// - parameter engine: An instance of the MacroEngine class to
+    /// register with
     func addMacroSupport(engine: MacroEngine) {
         engine.insertBlockAsObject(setInnerProgress, key: "setInnerProgress")
         engine.insertBlockAsObject(getInnerProgress, key: "getInnerProgress")
@@ -93,11 +117,6 @@ class Thing: MacroEngineSupport {
         engine.insertBlockAsObject(getOuterProgress, key: "getOuterProgress")
     }
 }
-
-
-
-
-
 
 
 // Javascript callbacks for getting/setting innerProgress
@@ -125,4 +144,3 @@ private let setOuterProgress: @convention(block) Float -> Void = { newValue in
 private let getOuterProgress: @convention(block) Void -> Float = {
     return Thing.sharedInstance.outerProgress
 }
-
