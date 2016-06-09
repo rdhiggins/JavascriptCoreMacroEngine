@@ -25,20 +25,24 @@
 
 import UIKit
 
+
+/// View controller used for editing the javascript macros
 class MacroEditViewController: UIViewController {
+
 
     @IBOutlet weak var macroSelector: UISegmentedControl!
     @IBOutlet weak var codeView: CodeView!
-    
+
+
     var macros: [MacroMethod] = []
     var lastSelectedIndex: Int = 0
-    
-    var delegate: MacroEditResults?
-    
+
+
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
-    
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -48,19 +52,20 @@ class MacroEditViewController: UIViewController {
         lastSelectedIndex = 0        
     }
 
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
+
     @IBAction func allDone(sender: AnyObject) {
         codeView.textView.resignFirstResponder()
         saveCurrentMacro()
         
-        delegate?.results(macros)
-        
         self.dismissViewControllerAnimated(true, completion: nil)
     }
+
 
     @IBAction func selectedMacro(sender: AnyObject) {
         codeView.textView.resignFirstResponder()
@@ -68,14 +73,10 @@ class MacroEditViewController: UIViewController {
         saveCurrentMacro()
         lastSelectedIndex = macroSelector.selectedSegmentIndex
     }
+
     
     private func saveCurrentMacro() {
         macros[lastSelectedIndex].javascript = codeView.text!
         codeView.text = macros[macroSelector.selectedSegmentIndex].javascript
     }
-}
-
-
-protocol MacroEditResults {
-    func results(macros: [MacroMethod])
 }
