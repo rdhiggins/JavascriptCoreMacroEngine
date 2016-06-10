@@ -79,7 +79,7 @@ class MacroEngine {
     ///
     /// - parameter javascript: String containing the javascript for this
     /// method.
-    /// - parameter key: String containing the joavascript context name
+    /// - parameter key: String containing the javascript context name
     func setMethod(javascript: String, key: String) -> JSValue! {
         let script = "var \(key) = \(javascript)"
         context.evaluateScript(script)
