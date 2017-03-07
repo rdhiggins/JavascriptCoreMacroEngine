@@ -28,9 +28,9 @@ import JavaScriptCore
 
 /// Delegate protocol used to notify when a progress value has been updated
 protocol ProgressUpdate {
-    func innerProgressUpdate(progress: Float)
-    func middleProgressUpdate(progress: Float)
-    func outerProgressUpdate(progress: Float)
+    func innerProgressUpdate(_ progress: Float)
+    func middleProgressUpdate(_ progress: Float)
+    func outerProgressUpdate(_ progress: Float)
 }
 
 
@@ -106,7 +106,7 @@ class Thing: MacroEngineSupport {
     ///
     /// - parameter engine: An instance of the MacroEngine class to
     /// register with
-    func addMacroSupport(engine: MacroEngine) {
+    func addMacroSupport(_ engine: MacroEngine) {
         engine.insertBlockAsObject(setInnerProgress, key: "setInnerProgress")
         engine.insertBlockAsObject(getInnerProgress, key: "getInnerProgress")
         
@@ -120,27 +120,27 @@ class Thing: MacroEngineSupport {
 
 
 // Javascript callbacks for getting/setting innerProgress
-private let setInnerProgress: @convention(block) Float -> Void = { newValue in
+private let setInnerProgress: @convention(block) (Float) -> Void = { newValue in
     Thing.sharedInstance.innerProgress = newValue
 }
-private let getInnerProgress: @convention(block) Void -> Float = {
+private let getInnerProgress: @convention(block) (Void) -> Float = {
     return Thing.sharedInstance.innerProgress
 }
 
 
 // Javascript callbacks for getting/setting middleProgress
-private let setMiddleProgress: @convention(block) Float -> Void = { newValue in
+private let setMiddleProgress: @convention(block) (Float) -> Void = { newValue in
     Thing.sharedInstance.middleProgress = newValue
 }
-private let getMiddleProgress: @convention(block) Void -> Float = {
+private let getMiddleProgress: @convention(block) (Void) -> Float = {
     return Thing.sharedInstance.middleProgress
 }
 
 
 // Javascript callbacks for getting/setting outerProgress
-private let setOuterProgress: @convention(block) Float -> Void = { newValue in
+private let setOuterProgress: @convention(block) (Float) -> Void = { newValue in
     Thing.sharedInstance.outerProgress = newValue
 }
-private let getOuterProgress: @convention(block) Void -> Float = {
+private let getOuterProgress: @convention(block) (Void) -> Float = {
     return Thing.sharedInstance.outerProgress
 }

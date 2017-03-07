@@ -30,8 +30,8 @@ import JavaScriptCore
 /// to manage and execute a javascript method.
 class MacroMethod {
     
-    private let engine = MacroEngine.sharedInstance
-    private var jsValue: JSValue!
+    fileprivate let engine = MacroEngine.sharedInstance
+    fileprivate var jsValue: JSValue!
 
     /// Property that contains the javascript method
     var javascript: String {
@@ -59,14 +59,14 @@ class MacroMethod {
     ///
     /// - return: A JSValue object result returned by the javascript
     /// method
-    func call(params: AnyObject...) -> JSValue! {
-        return jsValue.callWithArguments(params)
+    func call(_ params: AnyObject...) -> JSValue! {
+        return jsValue.call(withArguments: params)
     }
     
 
     /// A private method used to configure the javascript method
     /// into the macro engine's context
-    private func setMethod() {
+    fileprivate func setMethod() {
         jsValue = engine.setMethod(javascript, key: key)
     }
 }

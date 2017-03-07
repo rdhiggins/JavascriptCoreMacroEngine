@@ -39,7 +39,7 @@ class MacroEditViewController: UIViewController {
 
 
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
 
 
@@ -59,15 +59,15 @@ class MacroEditViewController: UIViewController {
     }
 
 
-    @IBAction func allDone(sender: AnyObject) {
+    @IBAction func allDone(_ sender: AnyObject) {
         codeView.textView.resignFirstResponder()
         saveCurrentMacro()
         
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
 
 
-    @IBAction func selectedMacro(sender: AnyObject) {
+    @IBAction func selectedMacro(_ sender: AnyObject) {
         codeView.textView.resignFirstResponder()
         
         saveCurrentMacro()
@@ -75,7 +75,7 @@ class MacroEditViewController: UIViewController {
     }
 
     
-    private func saveCurrentMacro() {
+    fileprivate func saveCurrentMacro() {
         macros[lastSelectedIndex].javascript = codeView.text!
         codeView.text = macros[macroSelector.selectedSegmentIndex].javascript
     }

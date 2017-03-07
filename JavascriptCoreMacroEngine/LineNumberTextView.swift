@@ -35,12 +35,12 @@ class LineNumberTextView: UITextView {
 
     /// property containing the fill coler to use for the gutter
     @IBInspectable
-    var gutterFillColor: UIColor = UIColor.grayColor()
+    var gutterFillColor: UIColor = UIColor.gray
     
     
     /// property containing the border color to use for the gutter
     @IBInspectable
-    var gutterBorderColor: UIColor = UIColor.blackColor()
+    var gutterBorderColor: UIColor = UIColor.black
     
     
     /// property containing the strokeWidth to use for the gutter border
@@ -55,7 +55,7 @@ class LineNumberTextView: UITextView {
     
     /// property containing the color to use for the gutter number text
     @IBInspectable
-    var gutterTextColor: UIColor = UIColor.blackColor()
+    var gutterTextColor: UIColor = UIColor.black
     
     
     required init?(coder aDecoder: NSCoder) {
@@ -74,42 +74,40 @@ class LineNumberTextView: UITextView {
     
     /// private method used to configure the view.  It sets up a exclusion
     /// zone with the text container
-    private func setup() {
+    fileprivate func setup() {
         let bp = UIBezierPath(rect: CGRect(x: CGFloat(0.0),
                                  y: CGFloat(0.0),
                              width: gutterWidth,
                             height: CGFloat(FLT_MAX)))
         
         self.textContainer.exclusionPaths = [bp]
-        self.contentMode = UIViewContentMode.Redraw
+        self.contentMode = UIViewContentMode.redraw
     }
     
     
     /// drawRect method used to draw the gutter background.
     ///
     /// - parameter rect:   CGRect to refresh (ignored)
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         
         let context = UIGraphicsGetCurrentContext()
         let bounds = self.bounds
         
-        CGContextSetFillColorWithColor(context, gutterFillColor.CGColor)
+        context?.setFillColor(gutterFillColor.cgColor)
 
-        CGContextFillRect(context,
-                          CGRect(origin: bounds.origin,
+        context?.fill(CGRect(origin: bounds.origin,
                                  size: CGSize(width: gutterWidth,
                                               height: bounds.size.height)))
 
-        CGContextSetStrokeColorWithColor(context, gutterBorderColor.CGColor)
-        CGContextSetLineWidth(context, 0.5)
+        context?.setStrokeColor(gutterBorderColor.cgColor)
+        context?.setLineWidth(0.5)
 
-        CGContextStrokeRect(context,
-                            CGRect(x: bounds.origin.x +
+        context?.stroke(CGRect(x: bounds.origin.x +
                                         (gutterWidth - gutterStrokeWidth),
                                    y: bounds.origin.y,
                                    width: gutterStrokeWidth,
-                                   height: CGRectGetHeight(bounds)))
+                                   height: bounds.height))
 
-        super.drawRect(rect)
+        super.draw(rect)
     }
 }

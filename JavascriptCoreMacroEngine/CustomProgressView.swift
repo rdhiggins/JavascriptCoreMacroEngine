@@ -31,7 +31,7 @@ class CustomProgressView: UIView {
     /// supports
     @IBInspectable var numberRotations: CGFloat = 10.0 {
         didSet {
-            arcLayer.path = circlePath().CGPath
+            arcLayer.path = circlePath().cgPath
         }
     }
     
@@ -55,9 +55,9 @@ class CustomProgressView: UIView {
     /// This property contains the color of the progress indicator.
     @IBInspectable var color: UIColor? {
         didSet {
-            arcLayer.strokeColor = color?.CGColor
-            endLayer.fillColor = color?.CGColor
-            startLayer.fillColor = color?.CGColor
+            arcLayer.strokeColor = color?.cgColor
+            endLayer.fillColor = color?.cgColor
+            startLayer.fillColor = color?.cgColor
         }
     }
 
@@ -67,8 +67,8 @@ class CustomProgressView: UIView {
     @IBInspectable var lineWidth: CGFloat = 1 {
         didSet {
             arcLayer.lineWidth = lineWidth
-            endLayer.path = endCapPath().CGPath
-            startLayer.path = endCapPath().CGPath
+            endLayer.path = endCapPath().cgPath
+            startLayer.path = endCapPath().cgPath
         }
     }
 
@@ -76,9 +76,9 @@ class CustomProgressView: UIView {
     /// This property controls the amount of inset the ring should have
     @IBInspectable var ringInset: CGFloat = 0.0 {
         didSet {
-            startLayer.path = endCapPath().CGPath
-            endLayer.path = endCapPath().CGPath
-            arcLayer.path = circlePath().CGPath
+            startLayer.path = endCapPath().cgPath
+            endLayer.path = endCapPath().cgPath
+            arcLayer.path = circlePath().cgPath
         }
     }
 
@@ -93,7 +93,7 @@ class CustomProgressView: UIView {
 
     /// The shadow offset of the end cap is controller with this
     /// property.
-    @IBInspectable var shadowOffset: CGSize = CGSizeZero {
+    @IBInspectable var shadowOffset: CGSize = CGSize.zero {
         didSet {
             endLayer.shadowOffset = shadowOffset
         }
@@ -112,7 +112,7 @@ class CustomProgressView: UIView {
     /// The color of the shadow on the end cap.
     @IBInspectable var shadowColor: UIColor? {
         didSet {
-            endLayer.shadowColor = shadowColor?.CGColor
+            endLayer.shadowColor = shadowColor?.cgColor
         }
     }
 
@@ -131,14 +131,14 @@ class CustomProgressView: UIView {
     
     
     // private properties for the three layers that we use
-    private let arcLayer = CAShapeLayer()
-    private let endLayer = CAShapeLayer()
-    private let startLayer = CAShapeLayer()
+    fileprivate let arcLayer = CAShapeLayer()
+    fileprivate let endLayer = CAShapeLayer()
+    fileprivate let startLayer = CAShapeLayer()
 
 
     // private properties used to store old angle value to
     // help with determining the animations
-    private var oldAngle: CGFloat = 0
+    fileprivate var oldAngle: CGFloat = 0
 
     
     
@@ -172,7 +172,7 @@ class CustomProgressView: UIView {
     
     /// A private method that is called to perform the actual steps in updating
     /// the progress indicators.
-    private func updateLayerProgress() {
+    fileprivate func updateLayerProgress() {
         let fromStroke = arcLayer.strokeEnd
         let toStroke = progress / numberRotations
         let fromAngle = oldAngle
@@ -188,8 +188,8 @@ class CustomProgressView: UIView {
         endLayer.transform = rotate
 
         // Set the animation for the pending actions
-        endLayer.addAnimation(endCapAnimation(fromAngle, toAngle: toAngle), forKey: "transform.rotation.z")
-        arcLayer.addAnimation(circleAnimation(fromStroke, toStroke: toStroke, fromAngle: fromAngle, toAngle: toAngle), forKey: "strokeEnd")
+        endLayer.add(endCapAnimation(fromAngle, toAngle: toAngle), forKey: "transform.rotation.z")
+        arcLayer.add(circleAnimation(fromStroke, toStroke: toStroke, fromAngle: fromAngle, toAngle: toAngle), forKey: "strokeEnd")
 
         // Save the angle for the next time...
         oldAngle = toAngle
@@ -199,7 +199,7 @@ class CustomProgressView: UIView {
     /// A utility used to setup the shapeLayers on initialization.   Each layer
     /// is initialized with the correct properties and loaded into view's
     /// CALayer hierarchy.
-    private func setupShapeLayers() {
+    fileprivate func setupShapeLayers() {
         let frame = circleFrame()
 
         setupShapeLayer(startLayer, frame: frame)
@@ -209,10 +209,10 @@ class CustomProgressView: UIView {
         arcLayer.lineCap = kCALineCapRound
         
         setupShapeLayer(endLayer, frame: frame)
-        endLayer.shadowColor = UIColor.blackColor().CGColor
+        endLayer.shadowColor = UIColor.black.cgColor
         endLayer.shadowRadius = lineWidth
         endLayer.shadowOpacity = 0.6
-        endLayer.shadowOffset = CGSizeMake(lineWidth, 0)
+        endLayer.shadowOffset = CGSize(width: lineWidth, height: 0)
     }
 
 
@@ -222,9 +222,9 @@ class CustomProgressView: UIView {
     /// - parameter shapeLayer: A CAShapeLayer to initialize and add into the
     /// view's CALayer hiearchy
     /// - parameter frame: A CGRect that is the new frame to use
-    private func setupShapeLayer(shapeLayer: CAShapeLayer, frame: CGRect) {
-        shapeLayer.fillColor = UIColor.clearColor().CGColor
-        shapeLayer.strokeColor = color?.CGColor
+    fileprivate func setupShapeLayer(_ shapeLayer: CAShapeLayer, frame: CGRect) {
+        shapeLayer.fillColor = UIColor.clear.cgColor
+        shapeLayer.strokeColor = color?.cgColor
 
         layer.addSublayer(shapeLayer)
     }
@@ -235,22 +235,22 @@ class CustomProgressView: UIView {
     /// a new CGPath is loaded into the layer.
     ///
     /// parameter frame: A CGRect that is the new frame to use for the views
-    private func reframeLayers(frame: CGRect) {
+    fileprivate func reframeLayers(_ frame: CGRect) {
         reframeLayer(startLayer, frame: frame)
-        startLayer.path = endCapPath().CGPath
+        startLayer.path = endCapPath().cgPath
 
         reframeLayer(arcLayer, frame: frame)
-        arcLayer.path = circlePath().CGPath
+        arcLayer.path = circlePath().cgPath
 
         reframeLayer(endLayer, frame: frame)
-        endLayer.path = endCapPath().CGPath
+        endLayer.path = endCapPath().cgPath
     }
 
     
     /// A utility method used to properly update the frame for CAShapeLayer.
-    private func reframeLayer(layer: CAShapeLayer, frame: CGRect) {
-        layer.bounds = CGRect(origin: CGPointZero, size: frame.size)
-        layer.position = CGPoint(x: CGRectGetMidX(bounds), y: CGRectGetMidY(bounds))
+    fileprivate func reframeLayer(_ layer: CAShapeLayer, frame: CGRect) {
+        layer.bounds = CGRect(origin: CGPoint.zero, size: frame.size)
+        layer.position = CGPoint(x: bounds.midX, y: bounds.midY)
     }
 
     
@@ -259,11 +259,11 @@ class CustomProgressView: UIView {
     /// one half the smallest dimension.
     ///
     /// - returns: A CGRect to use as the frame for a shape layer
-    private func circleFrame() -> CGRect {
+    fileprivate func circleFrame() -> CGRect {
         let radius = min(bounds.width / 2, bounds.height / 2)
-        let frame = CGRect(origin: CGPointMake(bounds.width / 2, bounds.height / 2), size: CGSizeZero)
+        let frame = CGRect(origin: CGPoint(x: bounds.width / 2, y: bounds.height / 2), size: CGSize.zero)
 
-        return CGRectInset(frame, -radius, -radius)
+        return frame.insetBy(dx: -radius, dy: -radius)
     }
 
     
@@ -273,7 +273,7 @@ class CustomProgressView: UIView {
     /// direction.
     ///
     /// - returns: The radius to use.
-    private func circleRadius() -> CGFloat {
+    fileprivate func circleRadius() -> CGFloat {
         let rect = circleFrame()
 
         return min(rect.width, rect.height) / 2.0 - lineWidth - ringInset
@@ -284,9 +284,9 @@ class CustomProgressView: UIView {
     /// that the view is square.
     ///
     /// - returns: A CGPoint to use as the center point of the circle
-    private func circleCenter() -> CGPoint {
+    fileprivate func circleCenter() -> CGPoint {
         let radius = circleRadius() + lineWidth + ringInset
-        return CGPointMake(radius, radius)
+        return CGPoint(x: radius, y: radius)
     }
 
 
@@ -294,7 +294,7 @@ class CustomProgressView: UIView {
     ///
     /// - returns: A UIBezierPath that is a arc that uses the current
     /// radius, and lineWidth.
-    private func circlePath() -> UIBezierPath {
+    fileprivate func circlePath() -> UIBezierPath {
         let topAngle: CGFloat = CGFloat(-M_PI_2)
         let endAngle: CGFloat = CGFloat(2 * M_PI) * numberRotations - CGFloat(M_PI_2)
         let path = UIBezierPath(arcCenter: circleCenter(), radius: circleRadius(), startAngle: topAngle, endAngle: endAngle, clockwise: true)
@@ -307,14 +307,14 @@ class CustomProgressView: UIView {
     ///
     /// - returns: A UIBezierPath that is a end cap that uses the current
     /// radius, and lineWidth.
-    private func endCapPath() -> UIBezierPath {
+    fileprivate func endCapPath() -> UIBezierPath {
         let c = circleCenter()
-        let capCenter = CGPointMake(c.x, c.y - circleRadius())
+        let capCenter = CGPoint(x: c.x, y: c.y - circleRadius())
 
-        var rect = CGRect(origin: capCenter, size: CGSizeZero)
-        rect = CGRectInset(rect, -lineWidth / 2, -lineWidth / 2)
+        var rect = CGRect(origin: capCenter, size: CGSize.zero)
+        rect = rect.insetBy(dx: -lineWidth / 2, dy: -lineWidth / 2)
         
-        return UIBezierPath(ovalInRect: rect)
+        return UIBezierPath(ovalIn: rect)
     }
 }
 
@@ -333,14 +333,14 @@ extension CustomProgressView {
     /// - parameter fromAngle: The starting angle in radians
     /// - parameter toAngle: The ending angle in radians.  Can be more then 2*pie in change.
     /// - return: A CABasicAnimation properly setup for the desired changes.
-    private func circleAnimation(fromStroke: CGFloat, toStroke: CGFloat, fromAngle: CGFloat, toAngle: CGFloat) -> CABasicAnimation {
+    fileprivate func circleAnimation(_ fromStroke: CGFloat, toStroke: CGFloat, fromAngle: CGFloat, toAngle: CGFloat) -> CABasicAnimation {
         let ba = CABasicAnimation(keyPath: "strokeEnd")
         ba.fromValue = fromStroke
         ba.toValue = toStroke
         ba.duration = angleRotationDuration(fromAngle, toAngle: toAngle)
         ba.beginTime = CACurrentMediaTime() + animationDelay
-        ba.cumulative = false
-        ba.removedOnCompletion = true
+        ba.isCumulative = false
+        ba.isRemovedOnCompletion = true
         ba.fillMode = kCAFillModeBackwards
         ba.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
 
@@ -354,14 +354,14 @@ extension CustomProgressView {
     /// - parameter fromAngle: The starting angle in radians
     /// - parameter toAngle: The ending angle in radians.  Can be more then 2*pie in change.
     /// - return: A CABasicAnimation properly setup for the desired changes.
-    private func endCapAnimation(fromAngle: CGFloat, toAngle: CGFloat) -> CABasicAnimation {
+    fileprivate func endCapAnimation(_ fromAngle: CGFloat, toAngle: CGFloat) -> CABasicAnimation {
         let ba = CABasicAnimation(keyPath: "transform.rotation.z")
         ba.fromValue = fromAngle
         ba.toValue = toAngle
         ba.duration = angleRotationDuration(fromAngle, toAngle: toAngle)
         ba.beginTime = CACurrentMediaTime() + animationDelay
-        ba.cumulative = false
-        ba.removedOnCompletion = true
+        ba.isCumulative = false
+        ba.isRemovedOnCompletion = true
         ba.fillMode = kCAFillModeBackwards
         ba.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
 
@@ -375,7 +375,7 @@ extension CustomProgressView {
     /// - parameter fromAngle: The starting angle in radians
     /// - parameter toAngle: The ending angle in radians.  Can be more then 2*pie in change.
     /// - return: The CFTimeInterval to be used for the animation
-    private func angleRotationDuration(fromAngle: CGFloat, toAngle: CGFloat) -> CFTimeInterval {
+    fileprivate func angleRotationDuration(_ fromAngle: CGFloat, toAngle: CGFloat) -> CFTimeInterval {
         let deltaAngle = abs(toAngle - fromAngle)
         
         // Want to use a full rotation time for changes less then one rotation

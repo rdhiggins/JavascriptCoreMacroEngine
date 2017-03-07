@@ -54,36 +54,36 @@ class KeyboardSpacingView: UIView {
     
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
     
     /// Private method for setting up this view.  It registers for the keyboard
     /// notifications, creates the height constraint, and sets the background
     /// color to clear so the does not show.
-    private func setup() {
+    fileprivate func setup() {
         registerKeyboardNotifications()
         
         heightConstraint = NSLayoutConstraint(item: self,
-                                              attribute: .Height,
-                                              relatedBy: .Equal,
+                                              attribute: .height,
+                                              relatedBy: .equal,
                                               toItem: nil,
-                                              attribute: .NotAnAttribute,
+                                              attribute: .notAnAttribute,
                                               multiplier: 1.0,
                                               constant: 0.0)
         self.addConstraint(heightConstraint)
         
-        self.backgroundColor = UIColor.clearColor()
+        self.backgroundColor = UIColor.clear
     }
     
     
     /// Private method for registering for keyboard notifications
-    private func registerKeyboardNotifications() {
+    fileprivate func registerKeyboardNotifications() {
         addObserver(#selector(self.willShowKeyboard(_:)),
-                    name: UIKeyboardWillShowNotification)
+                    name: NSNotification.Name.UIKeyboardWillShow.rawValue)
         
         addObserver(#selector(self.willHideKeyboard(_:)),
-                    name: UIKeyboardWillHideNotification)
+                    name: NSNotification.Name.UIKeyboardWillHide.rawValue)
         
     }
     
@@ -93,12 +93,12 @@ class KeyboardSpacingView: UIView {
     ///
     /// - parameter selector: The class method to connect to the notification
     /// - parameter name: The notification string to register for
-    private func addObserver(selector: Selector, name: String) {
-        let center = NSNotificationCenter.defaultCenter()
+    fileprivate func addObserver(_ selector: Selector, name: String) {
+        let center = NotificationCenter.default
         
         center.addObserver(self,
                            selector: selector,
-                           name: name,
+                           name: NSNotification.Name(rawValue: name),
                            object: nil)
     }
     
@@ -108,12 +108,12 @@ class KeyboardSpacingView: UIView {
     /// the height constraint.
     ///
     /// - parameter notification: NSNotification
-    func willShowKeyboard(notification: NSNotification) {
+    func willShowKeyboard(_ notification: Notification) {
         guard let userInfo = notification.userInfo as? [String: AnyObject],
-            let keyboardEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.CGRectValue(),
-            let keyboardFrame = self.superview?.convertRect(keyboardEndFrame, fromView: self.window),
-            let windowFrame = self.superview?.convertRect((self.window?.frame)!, fromView: self.window),
-            let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSTimeInterval else {
+            let keyboardEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
+            let keyboardFrame = self.superview?.convert(keyboardEndFrame, from: self.window),
+            let windowFrame = self.superview?.convert((self.window?.frame)!, from: self.window),
+            let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? TimeInterval else {
             
             print("Not enough userInfo")
             fatalError()
@@ -121,9 +121,9 @@ class KeyboardSpacingView: UIView {
         
         let heightOffset = (windowFrame.size.height - keyboardFrame.origin.y) - self.superview!.frame.origin.y
         heightConstraint.constant = heightOffset
-        UIView.animateWithDuration(duration) {
+        UIView.animate(withDuration: duration, animations: {
             self.superview?.layoutIfNeeded()
-        }
+        }) 
     }
     
     
@@ -132,17 +132,17 @@ class KeyboardSpacingView: UIView {
     /// sets the height constraint to zero.
     ///
     /// - parameter notification: NSNotification
-    func willHideKeyboard(notification: NSNotification) {
+    func willHideKeyboard(_ notification: Notification) {
         guard let userInfo = notification.userInfo as? [String: AnyObject],
-            let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSTimeInterval else {
+            let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? TimeInterval else {
             
             print("not enough userInfo")
             fatalError()
         }
         
         heightConstraint.constant = 0
-        UIView.animateWithDuration(duration) {
+        UIView.animate(withDuration: duration, animations: {
             self.superview?.layoutIfNeeded()
-        }
+        }) 
     }
 }

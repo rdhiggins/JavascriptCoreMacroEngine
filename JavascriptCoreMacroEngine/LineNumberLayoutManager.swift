@@ -33,7 +33,7 @@ import UIKit
 class LineNumberLayoutManager: NSLayoutManager {
 
     /// Property containing the color to use for the text
-    var textColor: UIColor = UIColor.whiteColor() {
+    var textColor: UIColor = UIColor.white {
         didSet {
             setupFontAttributes()
         }
@@ -45,24 +45,24 @@ class LineNumberLayoutManager: NSLayoutManager {
 
     /// Property containing the font to use for the line numbers
     var font: UIFont! =
-        UIFont.monospacedDigitSystemFontOfSize(14.0, weight: UIFontWeightThin) {
+        UIFont.monospacedDigitSystemFont(ofSize: 14.0, weight: UIFontWeightThin) {
         didSet {
             setupFontAttributes()
         }
     }
 
     
-    private var fontAttributes: [String : NSObject] = [
+    fileprivate var fontAttributes: [String : NSObject] = [
         NSFontAttributeName :
-            UIFont.monospacedDigitSystemFontOfSize(14.0,
+            UIFont.monospacedDigitSystemFont(ofSize: 14.0,
                 weight: UIFontWeightThin),
-        NSForegroundColorAttributeName : UIColor.whiteColor()
+        NSForegroundColorAttributeName : UIColor.white
     ]
 
     
     /// Private method used to update the text color in the font
     /// attributes
-    private func setupFontAttributes() {
+    fileprivate func setupFontAttributes() {
         fontAttributes = [
             NSFontAttributeName : font,
             NSForegroundColorAttributeName: textColor
@@ -75,37 +75,36 @@ class LineNumberLayoutManager: NSLayoutManager {
     ///
     /// - parameter glyphsToShow: A range of the glyphs that need to updated
     /// - parameter atPoint: origin point
-    override func drawBackgroundForGlyphRange(glyphsToShow: NSRange, atPoint origin: CGPoint) {
-        super.drawBackgroundForGlyphRange(glyphsToShow, atPoint: origin)
+    override func drawBackground(forGlyphRange glyphsToShow: NSRange, at origin: CGPoint) {
+        super.drawBackground(forGlyphRange: glyphsToShow, at: origin)
 
         // Enumerate over the lines that need refresh
-        enumerateLineFragmentsForGlyphRange(glyphsToShow) {
+        enumerateLineFragments(forGlyphRange: glyphsToShow) {
             rect, usedRect, textContainer, glyphRange, stop in
 
-            let charRange = self.characterRangeForGlyphRange(glyphRange,
+            let charRange = self.characterRange(forGlyphRange: glyphRange,
                                                         actualGlyphRange: nil)
 
             let before = (self.textStorage!.string as NSString)
-                .substringToIndex(charRange.location)
+                .substring(to: charRange.location)
 
             let lineNumber = before
-                .componentsSeparatedByCharactersInSet(
-                    NSCharacterSet.newlineCharacterSet()).count
+                .components(
+                    separatedBy: CharacterSet.newlines).count
 
             let r = CGRect(x: 0,
                            y: rect.origin.y,
                            width: self.gutterWidth,
                            height: rect.size.height)
 
-            let gutterRect = CGRectOffset(r, origin.x, origin.y)
+            let gutterRect = r.offsetBy(dx: origin.x, dy: origin.y)
             let s = String(format: "%ld", lineNumber)
-            let size = s.sizeWithAttributes(self.fontAttributes)
-            let ds = CGRectOffset(gutterRect,
-                                  CGRectGetWidth(gutterRect) - 4 - size.width,
-                                  (CGRectGetHeight(gutterRect) - size.height)
+            let size = s.size(attributes: self.fontAttributes)
+            let ds = gutterRect.offsetBy(dx: gutterRect.width - 4 - size.width,
+                                  dy: (gutterRect.height - size.height)
                                     / 2.0)
 
-            s.drawInRect(ds, withAttributes: self.fontAttributes)
+            s.draw(in: ds, withAttributes: self.fontAttributes)
         }
     }
 }

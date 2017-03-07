@@ -63,7 +63,7 @@ class CodeView: UIView {
 
 
     /// Property containing the background color for the gutter
-    @IBInspectable var gutterBackgroundColor: UIColor = UIColor.grayColor() {
+    @IBInspectable var gutterBackgroundColor: UIColor = UIColor.gray {
         didSet {
             textView?.gutterFillColor = gutterBackgroundColor
         }
@@ -71,7 +71,7 @@ class CodeView: UIView {
 
 
     /// property containing the color to use for the line numbers
-    @IBInspectable var gutterTextColor: UIColor = UIColor.blackColor() {
+    @IBInspectable var gutterTextColor: UIColor = UIColor.black {
         didSet {
             textView?.gutterTextColor = gutterTextColor
             layoutManager?.textColor = gutterTextColor
@@ -80,7 +80,7 @@ class CodeView: UIView {
 
 
     /// Property containing the color og the gutter border
-    @IBInspectable var gutterBorderColor: UIColor = UIColor.blackColor() {
+    @IBInspectable var gutterBorderColor: UIColor = UIColor.black {
         didSet {
             textView?.gutterBorderColor = gutterBorderColor
         }
@@ -97,7 +97,7 @@ class CodeView: UIView {
 
     ///  Property containing the font to use for the code and line numbers
     @IBInspectable var font: UIFont? =
-        UIFont.monospacedDigitSystemFontOfSize(14.0, weight: UIFontWeightThin) {
+        UIFont.monospacedDigitSystemFont(ofSize: 14.0, weight: UIFontWeightThin) {
         didSet {
             textView?.font = font
             layoutManager?.font = font
@@ -108,7 +108,7 @@ class CodeView: UIView {
     /// Property enabling editing support for the text view
     @IBInspectable var canEdit: Bool = true {
         didSet {
-            textView?.editable = canEdit
+            textView?.isEditable = canEdit
         }
     }
 
@@ -133,7 +133,7 @@ class CodeView: UIView {
     
 
     /// A private method for setting up this view
-    private func setup() {
+    fileprivate func setup() {
         textContainer = NSTextContainer()
         
         layoutManager = LineNumberLayoutManager()
@@ -149,7 +149,7 @@ class CodeView: UIView {
 
     /// A private method used to setup the gutter region.  This entails
     /// defining the exclusion zone used for the gutter
-    private func setupGutterRegion() {
+    fileprivate func setupGutterRegion() {
         let bp = UIBezierPath(rect: CGRect(x: CGFloat(0.0),
                                  y: CGFloat(0.0),
                              width: gutterWidth,
@@ -160,7 +160,7 @@ class CodeView: UIView {
     
 
     /// A private method for initializing the textview used.
-    private func setupTextView() {
+    fileprivate func setupTextView() {
         textView = LineNumberTextView(frame: self.bounds, textContainer: textContainer)
         textView.text = text
         textView.gutterFillColor = gutterBackgroundColor
@@ -168,8 +168,8 @@ class CodeView: UIView {
         textView.gutterStrokeWidth = gutterBorderWidth
         textView.gutterBorderColor = gutterBorderColor
         textView.font = font
-        textView.backgroundColor = UIColor.clearColor()
-        textView.editable = canEdit
+        textView.backgroundColor = UIColor.clear
+        textView.isEditable = canEdit
         
         addSubview(textView)
     }

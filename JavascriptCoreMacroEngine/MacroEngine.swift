@@ -29,7 +29,7 @@ import JavaScriptCore
 
 /// Protocol used by the MacroEngine to setup the macro objects for a class.
 protocol MacroEngineSupport {
-    func addMacroSupport(engine: MacroEngine)
+    func addMacroSupport(_ engine: MacroEngine)
 }
 
 
@@ -56,7 +56,7 @@ class MacroEngine {
     ///
     /// - parameter object: Object supporting the MacroEngineSupport
     /// protocol
-    func addObject(object: MacroEngineSupport) {
+    func addObject(_ object: MacroEngineSupport) {
         object.addMacroSupport(self)
     }
 
@@ -67,10 +67,10 @@ class MacroEngine {
     /// - parameter block:  Objective-C block
     /// - parameter key: String to use as the object name in the javascript
     /// context.
-    func insertBlockAsObject<BlockType>(block: BlockType, key: String) {
+    func insertBlockAsObject<BlockType>(_ block: BlockType, key: String) {
 
-        context.setObject(unsafeBitCast(block, AnyObject.self),
-                          forKeyedSubscript: key)
+        context.setObject(unsafeBitCast(block, to: AnyObject.self),
+                          forKeyedSubscript: key as (NSCopying & NSObjectProtocol)!)
     }
 
 
@@ -80,7 +80,7 @@ class MacroEngine {
     /// - parameter javascript: String containing the javascript for this
     /// method.
     /// - parameter key: String containing the javascript context name
-    func setMethod(javascript: String, key: String) -> JSValue! {
+    func setMethod(_ javascript: String, key: String) -> JSValue! {
         let script = "var \(key) = \(javascript)"
         context.evaluateScript(script)
         
@@ -90,17 +90,17 @@ class MacroEngine {
 
     /// Private method used to setup the exception handler.  The handler
     /// presents the error in a alert view
-    private func setupExceptionHandler() {
+    fileprivate func setupExceptionHandler() {
 
         context.exceptionHandler = { context, error in
-            let alert = UIAlertController(title: "Javascript Evaluation Error", message: error.toString(), preferredStyle: .Alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+            let alert = UIAlertController(title: "Javascript Evaluation Error", message: error?.toString(), preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
 
-            UIApplication.sharedApplication()
+            UIApplication.shared
                 .keyWindow?
                 .rootViewController?
                 .presentedViewController?
-                .presentViewController(alert,
+                .present(alert,
                                        animated: true,
                                        completion: nil)
         }
