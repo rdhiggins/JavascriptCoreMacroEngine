@@ -71,7 +71,7 @@ class ViewController: UIViewController, ProgressUpdate {
     @IBAction func executeMacroButton(_ sender: UIButton) {
 
         // Call the javascript method
-        macros[sender.tag].call()
+        _ = macros[sender.tag].call()
 
         // Load the javascript for the button just executed
         codeView?.text = macros[sender.tag].javascript
